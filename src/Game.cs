@@ -12,7 +12,7 @@ namespace Dungeon_Crawl.src
     {
         private Map _map;
         private Menu _menu;
-        private Fight _menu;
+        private Fight _fight;
         public void Start()
         {
 
