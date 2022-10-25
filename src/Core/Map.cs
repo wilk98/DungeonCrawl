@@ -61,10 +61,10 @@ internal class Map
 
     public GameObject At(Position position)
     {
-        if (position.X < 0 || position.X > Width)
-            throw new ArgumentOutOfRangeException();
-        if (position.Y < 0 || position.Y > Height)
-            throw new ArgumentOutOfRangeException();
+        if (position.X < 0 || position.X >= Width)
+            return new Wall(position);
+        if (position.Y < 0 || position.Y >= Height)
+            return new Wall(position);
         return _field[position.X, position.Y];
     }
     public void ChangePositions(Position pos1, Position pos2)
