@@ -6,8 +6,6 @@ internal abstract class DynamicObject : GameObject
     {
     }
 
-    private string Symbol { get; set; }
-
     public void Move()
     {
 
