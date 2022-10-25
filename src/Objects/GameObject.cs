@@ -2,7 +2,7 @@
 {
     abstract internal class GameObject
     {
-        public bool IsPassable { get; }
+        public virtual bool IsPassable { get; } = false;
 
         abstract protected string Symbol { get; set; }
         public Position Position { get; protected set; }

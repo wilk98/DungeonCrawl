@@ -2,6 +2,7 @@
 {
     internal class Air : StaticObject
     {
+        public override bool IsPassable => true;
         public Air(Position position) : base(position)
         {
         }
