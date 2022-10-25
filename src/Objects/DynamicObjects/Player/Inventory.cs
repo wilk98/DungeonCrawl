@@ -2,7 +2,7 @@
 
 internal class Inventory
 {
-    private List<Item> _items;
+    private List<Item> _items = new();
 
     public void AddItem(Item item)
     {

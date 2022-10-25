@@ -4,14 +4,12 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
     internal class KeyboardController
     {
-        public Position HandleMovement(char key, Position currentPosition)
+        public static Position HandleMovement(char key, Position currentPosition)
         {
             var direction = GetDirection(key);
-            var newPosition = MoveTowards(direction, currentPosition);
-
-            return currentPosition;
+            return MoveTowards(direction, currentPosition);
         }
-        private Position MoveTowards(Direction directionTo, Position position)
+        private static Position MoveTowards(Direction directionTo, Position position)
         {
             var newPosition = directionTo switch
             {
@@ -24,7 +22,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             return newPosition;
         }
 
-        private Direction GetDirection(char key)
+        private static Direction GetDirection(char key)
         {
             return key switch
             {
