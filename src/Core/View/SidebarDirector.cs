@@ -29,5 +29,12 @@ namespace Dungeon_Crawl.src.Core.View
             }
             return _sidebar.CreateFrame(height);
         }
+        public List<string> MakeInfoBox(Info info, int height = 5)
+        {
+            _sidebar.AddCenteredText(info.Text);
+            _sidebar.AddEmptyLine();
+            _sidebar.AddCenteredText(info.Choices);
+            return _sidebar.CreateFrame(height);
+        }
     }
 }
