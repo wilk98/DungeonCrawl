@@ -61,4 +61,12 @@ internal class Map
             throw new ArgumentOutOfRangeException();
         return _field[position.X, position.Y];
     }
+    public void ChangePositions(Position pos1, Position pos2)
+    {
+        var oldPosition = At(pos1);
+        var newPosition = At(pos2);
+
+        _field[pos1.X, pos1.Y] = newPosition;
+        _field[pos2.X, pos2.Y] = oldPosition;
+    }
 }
