@@ -54,7 +54,7 @@ namespace Dungeon_Crawl.src.Core
                 case State.Game:
                     Console.Clear();
                     var view = _camera.GetView(_player.Position, _map);
-                    _display.DisplayView(view);
+                    _display.DisplayView(view, _player.Inventory, _player.Stats);
                     break;
                 case State.Pause:
                     break;
