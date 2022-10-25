@@ -13,6 +13,7 @@ namespace Dungeon_Crawl.src.Core
         private readonly Movement _movement;
         private readonly SidebarDirector _sidebarDirector;
         private State _currentState;
+        private Info? _pendingInfo;
 
         public Game()
         {
@@ -37,12 +38,16 @@ namespace Dungeon_Crawl.src.Core
                 ProcessInput();
                 if (_currentState == State.Game)
                     Update();
+                if (_currentState == State.Info)
+                {
+                    _pendingInfo = _player.Info;
+                }
             }
         }
 
         private void Update()
         {
-
+            
         }
 
         private void ProcessInput()
@@ -58,15 +63,27 @@ namespace Dungeon_Crawl.src.Core
             {
                 case State.Game:
                 case State.Inventory:
-                    var view = _camera.GetView(_player.Position, _map);
-                    var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
-                    _display.DisplayView(view, inventoryView);
+                    {
+                        var view = _camera.GetView(_player.Position, _map);
+                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                        _display.DisplayView(view, inventoryView);
+                    }
                     break;
                 case State.Pause:
                     break;
                 case State.Fight:
                     break;
                 case State.Info:
+                    {
+                        if (_pendingInfo is null)
+                        {
+                            throw new Exception("Info should not be null");
+                        }
+                        var view = _camera.GetView(_player.Position, _map);
+                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                        var infoBox = _sidebarDirector.MakeInfoBox(_pendingInfo);
+                        _display.DisplayInfo(view, inventoryView, infoBox);
+                    }
                     break;
                 default:
                     break;

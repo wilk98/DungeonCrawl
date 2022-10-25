@@ -24,6 +24,15 @@
 
         public void SelectLeft() => _selectedChoice = 0;
         public void SelectRight() => _selectedChoice = 1;
+        public bool Accepted { get; private set; }
+        public bool Resolved { get; private set; }
+
+        internal void Select()
+        {
+            Resolved = true;
+            Accepted = _selectedChoice == 0;
+        }
+
         public Info(string text, Tuple<string, string> choices)
         {
             Text = text;

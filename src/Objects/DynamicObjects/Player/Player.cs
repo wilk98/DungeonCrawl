@@ -22,6 +22,7 @@ internal class Player : DynamicObject
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
+    public Info? Info { get; internal set; }
 
     public State ProcessInput(ConsoleKey key, State currentState)
     {
@@ -38,6 +39,9 @@ internal class Player : DynamicObject
                         return State.Game;
                     case ConsoleKey.I:
                         return State.Inventory;
+                    case ConsoleKey.F:
+                        Info = new Info("Test info!", new Tuple<string, string>("Yes", "No"));
+                        return State.Info;
                     default:
                         return State.Game;
                 }
@@ -56,12 +60,19 @@ internal class Player : DynamicObject
                         return State.Game;
                 }
             case State.Info:
+                if (Info is null)
+                    return State.Game;
                 switch (key)
                 {
-                    case ConsoleKey.S:
-                    case ConsoleKey.A:
-                    case ConsoleKey.Enter:
+                    case ConsoleKey.D:
+                        Info.SelectRight();
                         return State.Info;
+                    case ConsoleKey.A:
+                        Info.SelectLeft();
+                        return State.Info;
+                    case ConsoleKey.Enter:
+                        Info.Select();
+                        return State.Game;
                     default:
                         return State.Game;
                 }
@@ -92,6 +103,11 @@ internal class Player : DynamicObject
     }
 
     public void Move()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void HandleInfo(bool accepted)
     {
         throw new NotImplementedException();
     }
