@@ -7,27 +7,30 @@ internal class Map
     private const int _width = 243;
     private const int _height = 75;
 
+    public int Width => _width;
+
+    public int Height => _height;
+
     public Map()
     {
-        _field = new GameObject[_width, _height];
-        for (int x = 0; x < _width; x++)
+        _field = new GameObject[Width, Height];
+        for (int x = 0; x < Width; x++)
         {
-            for (int y = 0; y < _height; y++)
+            for (int y = 0; y < Height; y++)
             {
                 _field[x, y] = new Wall(new Position(x, y));
             }
         }
     }
-
     public List<string> RenderMap()
     {
         Update();
         Render();
         var map = new List<string>();
-        for (int y = 0; y < _height; y++)
+        for (int y = 0; y < Height; y++)
         {
-            var row = new string[_width];
-            for (int x = 0; x < _width; x++)
+            var row = new string[Width];
+            for (int x = 0; x < Width; x++)
             {
                 row[x] = At(new Position(x, y)).ToString();
             }
@@ -54,9 +57,9 @@ internal class Map
 
     public GameObject At(Position position)
     {
-        if (position.X < 0 || position.X > _width)
+        if (position.X < 0 || position.X > Width)
             throw new ArgumentOutOfRangeException();
-        if (position.Y < 0 || position.Y > _height)
+        if (position.Y < 0 || position.Y > Height)
             throw new ArgumentOutOfRangeException();
         return _field[position.X, position.Y];
     }
