@@ -2,14 +2,14 @@
 {
     abstract internal class GameObject
     {
-        bool IsSolid { get; }
+        bool IsPassable { get; }
 
         abstract protected string Symbol { get; set; }
-        protected Position _position;
+        public Position Position { get; protected set; }
 
         protected GameObject(Position position)
         {
-            _position = position;
+            Position = position;
         }
 
         public abstract void Update();
