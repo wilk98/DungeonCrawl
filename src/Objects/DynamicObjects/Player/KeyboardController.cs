@@ -1,25 +1,16 @@
-﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
+﻿using Dungeon_Crawl.src.Core;
+
+namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
     internal class KeyboardController
     {
-        public KeyboardController()
-        {
-        }
         public Position HandleMovement(char key, Position currentPosition)
         {
             var direction = GetDirection(key);
             var newPosition = MoveTowards(direction, currentPosition);
-            var isValidMove = IsValidMove(newPosition);
-            if (isValidMove)
-                return newPosition;
 
             return currentPosition;
         }
-        private bool IsValidMove(Position newPosition)
-        {
-            throw new NotImplementedException();
-        }
-
         private Position MoveTowards(Direction directionTo, Position position)
         {
             var newPosition = directionTo switch
