@@ -1,4 +1,5 @@
 ﻿using Dungeon_Crawl.src.Actions;
+using Dungeon_Crawl.src.Core;
 
 namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
@@ -19,7 +20,24 @@ internal class Player : DynamicObject
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
 
-    public void ProcessInput(char key, Movement movementController)
+    public State ProcessInput(char key, Movement movementController)
+    {
+        switch (key)
+        {
+            case 'w':
+            case 'a':
+            case 's':
+            case 'd':
+                MakeMove(key, movementController);
+                return State.Game;
+            case 'i':
+                return State.Inventory;
+            default:
+                return State.Game;
+        }
+    }
+
+    private void MakeMove(char key, Movement movementController)
     {
         var newPosition = KeyboardController.HandleMovement(key, Position);
         var MoveWasSuccessfull = movementController.Move(Position, newPosition);
@@ -28,7 +46,6 @@ internal class Player : DynamicObject
             Position = newPosition;
         }
     }
-
 
     public override string Render()
     {

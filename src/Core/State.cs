@@ -5,6 +5,7 @@
         Game,
         Pause,
         Inventory,
+        Info,
         Fight
     }
 }

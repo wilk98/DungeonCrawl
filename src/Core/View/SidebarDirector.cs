@@ -20,9 +20,12 @@ namespace Dungeon_Crawl.src.Core.View
             _sidebar.AddLeftAlignedText($" Defence: {stats.Defense}");
             _sidebar.AddHorizontalRule();
             _sidebar.AddCenteredText("Inventory");
-            foreach (var item in inventory.GetItemNames())
+            foreach (var item in inventory.GetItems())
             {
-                _sidebar.AddLeftAlignedText($" {item}");
+                if (item == inventory.SelectedItem())
+                    _sidebar.AddLeftAlignedText($" > {item.Name}");
+                else
+                    _sidebar.AddLeftAlignedText($" {item.Name}");
             }
             return _sidebar.CreateFrame(height);
         }
