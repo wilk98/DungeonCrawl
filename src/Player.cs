@@ -6,6 +6,8 @@ internal class Player : DynamicObject, IMovable
     {
     }
 
+    protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     public void ProcessInput(char key)
     {
         throw new NotImplementedException();

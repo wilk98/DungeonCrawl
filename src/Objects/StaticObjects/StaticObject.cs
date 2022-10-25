@@ -8,7 +8,7 @@ namespace Dungeon_Crawl.src.StaticObjects
         {
         }
 
-        abstract protected string Symbol { get; set; }
+        
         public override string Render()
         {
             return Symbol;
