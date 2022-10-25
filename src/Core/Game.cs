@@ -15,7 +15,12 @@ namespace Dungeon_Crawl.src.Core
         public void Start()
         {
             _currentState = State.Game;
+            _player = new Player(new Position(5, 5));
             _map = new Map();
+            _map.AddObject(_player.Position, _player);
+            _camera = new Camera();
+            _display = new Display();
+            Gameloop();
         }
         private void Gameloop()
         {
@@ -43,6 +48,7 @@ namespace Dungeon_Crawl.src.Core
             switch (_currentState)
             {
                 case State.Game:
+                    Console.Clear();
                     var view = _camera.GetView(_player.Position, _map);
                     _display.DisplayView(view);
                     break;

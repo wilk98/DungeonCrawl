@@ -4,7 +4,10 @@
     {
         internal void DisplayView(List<string> view)
         {
-            throw new NotImplementedException();
+            foreach (var line in view)
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }
