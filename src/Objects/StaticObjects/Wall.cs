@@ -6,6 +6,6 @@
         {
         }
 
-        protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected override string Symbol { get => "#"; set => throw new NotImplementedException(); }
     }
 }

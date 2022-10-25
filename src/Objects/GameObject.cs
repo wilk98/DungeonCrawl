@@ -4,7 +4,7 @@
     {
         bool IsSolid { get; }
 
-        private string Symbol { get; set; }
+        abstract protected string Symbol { get; set; }
         protected Position _position;
 
         protected GameObject(Position position)
