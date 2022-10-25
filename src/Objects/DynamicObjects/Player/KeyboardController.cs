@@ -1,6 +1,4 @@
-﻿using Dungeon_Crawl.src.Core;
-
-namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
+﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
     internal class KeyboardController
     {
