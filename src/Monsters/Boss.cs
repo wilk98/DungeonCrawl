@@ -1,6 +1,19 @@
 ﻿namespace Dungeon_Crawl.src.Monsters;
 
-internal class Boss
+internal class Boss : Monster
 {
+    public Boss(Position position) : base(position)
+    {
+    }
+
+    public override string Render()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Update()
+    {
+        throw new NotImplementedException();
+    }
 }
 

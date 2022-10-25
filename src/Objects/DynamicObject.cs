@@ -1,10 +1,12 @@
 ﻿namespace Dungeon_Crawl.src.Objects;
 
-internal abstract class DynamicObject
+internal abstract class DynamicObject : GameObject
 {
-    private string Symbol { get; set; }
+    protected DynamicObject(Position position) : base(position)
+    {
+    }
 
-    public abstract void processInput(char key);
+    private string Symbol { get; set; }
 
     public void Move()
     {
