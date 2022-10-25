@@ -9,10 +9,10 @@ namespace Dungeon_Crawl.src.Core
         private Map _map;
         private readonly Camera _camera;
         private readonly Player _player;
-        private readonly State _currentState;
         private readonly Display _display;
         private readonly Movement _movement;
         private readonly SidebarDirector _sidebarDirector;
+        private State _currentState;
 
         public Game()
         {
@@ -35,7 +35,8 @@ namespace Dungeon_Crawl.src.Core
             {
                 Render();
                 ProcessInput();
-                Update();
+                if (_currentState == State.Game)
+                    Update();
             }
         }
 
@@ -47,23 +48,25 @@ namespace Dungeon_Crawl.src.Core
         private void ProcessInput()
         {
             char key = Console.ReadKey().KeyChar;
-            _player.ProcessInput(key, _movement);
+            _currentState = _player.ProcessInput(key, _movement);
         }
 
         private void Render()
         {
+            Console.Clear();
             switch (_currentState)
             {
                 case State.Game:
-                    Console.Clear();
+                case State.Inventory:
                     var view = _camera.GetView(_player.Position, _map);
-                    _display.DisplayView(view, _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count()));
+                    var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                    _display.DisplayView(view, inventoryView);
                     break;
                 case State.Pause:
                     break;
-                case State.Inventory:
-                    break;
                 case State.Fight:
+                    break;
+                case State.Info:
                     break;
                 default:
                     break;
