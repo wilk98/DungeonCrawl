@@ -6,7 +6,7 @@ internal abstract class DynamicObject : GameObject
     {
     }
 
-    public void Move()
+    public void Move(Position position)
     {
 
     }

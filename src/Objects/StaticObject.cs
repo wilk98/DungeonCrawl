@@ -1,6 +1,4 @@
-﻿using Dungeon_Crawl.src.Objects;
-
-namespace Dungeon_Crawl.src.StaticObjects
+﻿namespace Dungeon_Crawl.src.Objects
 {
     abstract internal class StaticObject : GameObject
     {
@@ -8,7 +6,7 @@ namespace Dungeon_Crawl.src.StaticObjects
         {
         }
 
-        
+
         public override string Render()
         {
             return Symbol;

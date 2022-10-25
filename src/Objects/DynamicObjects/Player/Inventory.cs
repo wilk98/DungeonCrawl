@@ -1,4 +1,4 @@
-﻿namespace Dungeon_Crawl.src.Utils;
+﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
 internal class Inventory
 {

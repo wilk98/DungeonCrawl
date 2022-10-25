@@ -1,6 +1,6 @@
 ﻿using Dungeon_Crawl.src.Objects.StaticObjects;
 
-namespace Dungeon_Crawl.src;
+namespace Dungeon_Crawl.src.Game;
 internal class Map
 {
     private readonly GameObject[,] _field;

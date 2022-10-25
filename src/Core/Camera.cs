@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeon_Crawl.src
+namespace Dungeon_Crawl.src.Game.Game
 {
     internal class Camera
     {
