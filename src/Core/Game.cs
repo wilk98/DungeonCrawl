@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dungeon_Crawl.src.Actions;
+﻿using Dungeon_Crawl.src.Actions;
 
-namespace Dungeon_Crawl.src.Game
+namespace Dungeon_Crawl.src.Core
 {
     internal class Game
     {
