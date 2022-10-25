@@ -1,6 +1,8 @@
-﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+﻿using Dungeon_Crawl.src.Actions;
 
-internal class Player : DynamicObject, IControlable, IMovable
+namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+
+internal class Player : DynamicObject, IMovable
 {
     private KeyboardController _keyboardController = new();
     public Player(Position position) : base(position)
@@ -9,9 +11,14 @@ internal class Player : DynamicObject, IControlable, IMovable
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
 
-    public void ProcessInput(char key)
+    public void ProcessInput(char key, Movement movementController)
     {
         var newPosition = _keyboardController.HandleMovement(key, Position);
+        var MoveWasSuccessfull = movementController.Move(Position, newPosition);
+        if (MoveWasSuccessfull)
+        {
+            Position = newPosition;
+        }
     }
 
 
