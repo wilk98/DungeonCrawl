@@ -6,7 +6,9 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 internal class Player : DynamicObject
 {
     private KeyboardController _keyboardController = new();
-    public Player(Position position) : base(position)
+    private Movement movementController;
+
+    public Player(Position position, Movement movementController) : base(position)
     {
         Stats = new Stats();
         Stats.HealthPoints = 100;
@@ -14,30 +16,62 @@ internal class Player : DynamicObject
         Stats.Defense = 5;
 
         Inventory = new Inventory();
+        this.movementController = movementController;
     }
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
 
-    public State ProcessInput(char key, Movement movementController)
+    public State ProcessInput(ConsoleKey key, State currentState)
     {
-        switch (key)
+        switch (currentState)
         {
-            case 'w':
-            case 'a':
-            case 's':
-            case 'd':
-                MakeMove(key, movementController);
-                return State.Game;
-            case 'i':
-                return State.Inventory;
-            default:
-                return State.Game;
+            case State.Game:
+                switch (key)
+                {
+                    case ConsoleKey.W:
+                    case ConsoleKey.S:
+                    case ConsoleKey.A:
+                    case ConsoleKey.D:
+                        MakeMove(key, movementController);
+                        return State.Game;
+                    case ConsoleKey.I:
+                        return State.Inventory;
+                    default:
+                        return State.Game;
+                }
+            case State.Pause:
+                break;
+            case State.Inventory:
+                switch (key)
+                {
+                    case ConsoleKey.W:
+                        Inventory.PreviousSelected();
+                        return State.Inventory;
+                    case ConsoleKey.S:
+                        Inventory.NextSelected();
+                        return State.Inventory;
+                    default:
+                        return State.Game;
+                }
+            case State.Info:
+                switch (key)
+                {
+                    case ConsoleKey.S:
+                    case ConsoleKey.A:
+                    case ConsoleKey.Enter:
+                        return State.Info;
+                    default:
+                        return State.Game;
+                }
+            case State.Fight:
+                break;
         }
+        return State.Game;
     }
 
-    private void MakeMove(char key, Movement movementController)
+    private void MakeMove(ConsoleKey key, Movement movementController)
     {
         var newPosition = KeyboardController.HandleMovement(key, Position);
         var MoveWasSuccessfull = movementController.Move(Position, newPosition);

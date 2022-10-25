@@ -17,8 +17,8 @@ namespace Dungeon_Crawl.src.Core
         public Game()
         {
             _currentState = State.Game;
-            _player = new Player(new Position(5, 5));
             _map = new Map();
+            _player = new Player(new Position(5, 5), new Movement(_map));
             _map.AddObject(_player.Position, _player);
             _movement = new Movement(_map);
             _camera = new Camera();
@@ -47,8 +47,8 @@ namespace Dungeon_Crawl.src.Core
 
         private void ProcessInput()
         {
-            char key = Console.ReadKey().KeyChar;
-            _currentState = _player.ProcessInput(key, _movement);
+            var key = Console.ReadKey().Key;
+            _currentState = _player.ProcessInput(key, _currentState);
         }
 
         private void Render()

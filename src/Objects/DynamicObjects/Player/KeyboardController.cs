@@ -2,7 +2,7 @@
 {
     internal class KeyboardController
     {
-        public static Position HandleMovement(char key, Position currentPosition)
+        public static Position HandleMovement(ConsoleKey key, Position currentPosition)
         {
             var direction = GetDirection(key);
             return MoveTowards(direction, currentPosition);
@@ -20,14 +20,14 @@
             return newPosition;
         }
 
-        private static Direction GetDirection(char key)
+        private static Direction GetDirection(ConsoleKey key)
         {
             return key switch
             {
-                'w' => Direction.North,
-                'a' => Direction.West,
-                's' => Direction.South,
-                'd' => Direction.East,
+                ConsoleKey.W => Direction.North,
+                ConsoleKey.A => Direction.West,
+                ConsoleKey.S => Direction.South,
+                ConsoleKey.D => Direction.East,
                 _ => throw new NotImplementedException($"This key has no assigned direction: {key}"),
             };
         }
