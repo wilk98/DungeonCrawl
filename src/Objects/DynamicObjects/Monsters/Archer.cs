@@ -1,17 +1,14 @@
-﻿namespace Dungeon_Crawl.src;
+﻿using Dungeon_Crawl.src.Objects.DynamicObjects;
 
-internal class Player : DynamicObject, IMovable
+namespace Dungeon_Crawl.src.Monsters;
+
+internal class Archer : Monster
 {
-    public Player(Position position) : base(position)
+    public Archer(Position position) : base(position)
     {
     }
 
     protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public void ProcessInput(char key)
-    {
-        throw new NotImplementedException();
-    }
 
     public override string Render()
     {

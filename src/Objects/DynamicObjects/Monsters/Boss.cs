@@ -1,8 +1,10 @@
-﻿namespace Dungeon_Crawl.src.Monsters;
+﻿using Dungeon_Crawl.src.Objects.DynamicObjects;
 
-internal class Archer : Monster
+namespace Dungeon_Crawl.src.Monsters;
+
+internal class Boss : Monster
 {
-    public Archer(Position position) : base(position)
+    public Boss(Position position) : base(position)
     {
     }
 

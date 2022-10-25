@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeon_Crawl.src.Utils
+namespace Dungeon_Crawl.src.Objects.DynamicObjects
 {
-    internal enum State
+    internal interface IMovable
     {
-        Game,
-        Pause,
-        Inventory,
-        Fight
+        public abstract void Move();
     }
 }

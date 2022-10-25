@@ -1,4 +1,4 @@
-﻿namespace Dungeon_Crawl.src;
+﻿namespace Dungeon_Crawl.src.Game;
 
 internal class Menu
 {

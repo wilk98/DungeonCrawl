@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeon_Crawl.src.Utils
+namespace Dungeon_Crawl.src.Game
 {
-    internal interface IMovable
+    internal enum State
     {
-        public abstract void ProcessInput(char key);
+        Game,
+        Pause,
+        Inventory,
+        Fight
     }
 }
