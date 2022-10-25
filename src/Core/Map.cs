@@ -53,6 +53,11 @@ internal class Map
         }
     }
 
+    public void AddObject(Position position, GameObject gameObject)
+    {
+        _field[position.X, position.Y] = gameObject;
+    }
+    
     public GameObject At(Position position)
     {
         if (position.X < 0 || position.X > Width)

@@ -11,7 +11,7 @@ internal class Player : DynamicObject, IControlable, IMovable
 
     public void ProcessInput(char key)
     {
-        var newPosition = _keyboardController.HandleMovement(key, _position);
+        var newPosition = _keyboardController.HandleMovement(key, Position);
     }
 
 
