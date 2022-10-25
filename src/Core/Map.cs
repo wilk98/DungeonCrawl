@@ -1,4 +1,5 @@
-﻿namespace Dungeon_Crawl.src.Core;
+﻿using Dungeon_Crawl.src.Objects.StaticObjects;
+namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
@@ -16,7 +17,7 @@ internal class Map
         {
             for (int y = 0; y < Height; y++)
             {
-                _field[x, y] = new Wall(new Position(x, y));
+                _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
             }
         }
     }
@@ -57,7 +58,7 @@ internal class Map
     {
         _field[position.X, position.Y] = gameObject;
     }
-    
+
     public GameObject At(Position position)
     {
         if (position.X < 0 || position.X > Width)
