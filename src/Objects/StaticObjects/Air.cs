@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dungeon_Crawl.src.Objects.StaticObjects
+﻿namespace Dungeon_Crawl.src.Objects.StaticObjects
 {
     internal class Air : StaticObject
     {

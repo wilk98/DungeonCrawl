@@ -1,6 +1,4 @@
-﻿using Dungeon_Crawl.src.Objects.StaticObjects;
-
-namespace Dungeon_Crawl.src.Game;
+﻿namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
