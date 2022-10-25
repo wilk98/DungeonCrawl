@@ -1,6 +1,5 @@
 ﻿using Dungeon_Crawl.src.Actions;
 using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
-using System.Data;
 
 namespace Dungeon_Crawl.src.Core
 {
