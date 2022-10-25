@@ -11,6 +11,7 @@ namespace Dungeon_Crawl.src.Core
         private Player _player;
         private State _currentState;
         private Display _display;
+        private Movement _movement;
 
         public void Start()
         {
@@ -18,6 +19,7 @@ namespace Dungeon_Crawl.src.Core
             _player = new Player(new Position(5, 5));
             _map = new Map();
             _map.AddObject(_player.Position, _player);
+            _movement = new Movement(_map);
             _camera = new Camera();
             _display = new Display();
             Gameloop();
@@ -40,7 +42,7 @@ namespace Dungeon_Crawl.src.Core
         private void ProcessInput()
         {
             char key = Console.ReadKey().KeyChar;
-            _player.ProcessInput(key);
+            _player.ProcessInput(key, _movement);
         }
 
         private void Render()
