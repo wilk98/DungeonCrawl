@@ -1,4 +1,5 @@
 ﻿using Dungeon_Crawl.src.Actions;
+using Dungeon_Crawl.src.Core.View;
 using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
 namespace Dungeon_Crawl.src.Core
@@ -11,6 +12,7 @@ namespace Dungeon_Crawl.src.Core
         private readonly State _currentState;
         private readonly Display _display;
         private readonly Movement _movement;
+        private readonly SidebarDirector _sidebarDirector;
 
         public Game()
         {
@@ -21,6 +23,7 @@ namespace Dungeon_Crawl.src.Core
             _movement = new Movement(_map);
             _camera = new Camera();
             _display = new Display();
+            _sidebarDirector = new SidebarDirector();
         }
         public void Start()
         {
@@ -54,7 +57,7 @@ namespace Dungeon_Crawl.src.Core
                 case State.Game:
                     Console.Clear();
                     var view = _camera.GetView(_player.Position, _map);
-                    _display.DisplayView(view, _player.Inventory, _player.Stats);
+                    _display.DisplayView(view, _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count()));
                     break;
                 case State.Pause:
                     break;
