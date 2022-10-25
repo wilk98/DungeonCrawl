@@ -2,7 +2,7 @@
 
 namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
-internal class Player : DynamicObject, IMovable
+internal class Player : DynamicObject
 {
     private KeyboardController _keyboardController = new();
     public Player(Position position) : base(position)
@@ -13,7 +13,7 @@ internal class Player : DynamicObject, IMovable
 
     public void ProcessInput(char key, Movement movementController)
     {
-        var newPosition = _keyboardController.HandleMovement(key, Position);
+        var newPosition = KeyboardController.HandleMovement(key, Position);
         var MoveWasSuccessfull = movementController.Move(Position, newPosition);
         if (MoveWasSuccessfull)
         {

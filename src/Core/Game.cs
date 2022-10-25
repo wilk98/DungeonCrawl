@@ -7,13 +7,13 @@ namespace Dungeon_Crawl.src.Core
     internal class Game
     {
         private Map _map;
-        private Camera _camera;
-        private Player _player;
-        private State _currentState;
-        private Display _display;
-        private Movement _movement;
+        private readonly Camera _camera;
+        private readonly Player _player;
+        private readonly State _currentState;
+        private readonly Display _display;
+        private readonly Movement _movement;
 
-        public void Start()
+        public Game()
         {
             _currentState = State.Game;
             _player = new Player(new Position(5, 5));
@@ -22,6 +22,9 @@ namespace Dungeon_Crawl.src.Core
             _movement = new Movement(_map);
             _camera = new Camera();
             _display = new Display();
+        }
+        public void Start()
+        {
             Gameloop();
         }
         private void Gameloop()
