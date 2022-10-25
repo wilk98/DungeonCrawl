@@ -7,9 +7,17 @@ internal class Player : DynamicObject
     private KeyboardController _keyboardController = new();
     public Player(Position position) : base(position)
     {
+        Stats = new Stats();
+        Stats.HealthPoints = 100;
+        Stats.Strength = 15;
+        Stats.Defense = 5;
+
+        Inventory = new Inventory();
     }
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
+    public Inventory Inventory { get; internal set; }
+    public Stats Stats { get; internal set; }
 
     public void ProcessInput(char key, Movement movementController)
     {

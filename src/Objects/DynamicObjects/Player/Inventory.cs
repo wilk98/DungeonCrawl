@@ -17,5 +17,9 @@ internal class Inventory
     {
 
     }
+    public List<string> GetItemNames()
+    {
+        return _items.Select(item => item.Name).ToList();
+    }
 }
 

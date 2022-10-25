@@ -4,6 +4,6 @@ internal class Stats
 {
     internal int HealthPoints { get; set; }
     internal int Strength { get; set; }
-    internal static int Defense { get; set; }
+    internal int Defense { get; set; }
 }
 

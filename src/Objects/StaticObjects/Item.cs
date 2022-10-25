@@ -2,12 +2,14 @@
 {
     internal class Item : StaticObject, IPickable
     {
-        public Item(Position position) : base(position)
+        public Item(string name, Position position) : base(position)
         {
+            Name = name;
         }
 
         public bool IsPickable => throw new NotImplementedException();
 
+        public string Name { get; internal set; }
         protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public bool PickUp()
