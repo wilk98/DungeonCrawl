@@ -12,7 +12,9 @@ namespace Dungeon_Crawl.src.Actions
         private bool IsValidMove(Position positionTo)
         {
             var destination = _map.At(positionTo);
-            return destination.IsPassable;
+            var InMapBounds = positionTo.X >= 0 && positionTo.Y >= 0 && positionTo.X < _map.Width && positionTo.Y < _map.Height;
+
+            return destination.IsPassable && InMapBounds;
         }
         public bool Move(Position positionFrom, Position positionTo)
         {
