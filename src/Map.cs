@@ -24,10 +24,10 @@ internal class Map
         Update();
         Render();
         var map = new List<string>();
-        for (int x = 0; x < _width; x++)
+        for (int y = 0; y < _height; y++)
         {
             var row = new string[_width];
-            for (int y = 0; y < _height; y++)
+            for (int x = 0; x < _width; x++)
             {
                 row[x] = At(new Position(x, y)).ToString();
             }
