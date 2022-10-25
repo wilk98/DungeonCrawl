@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Dungeon_Crawl.src.Core
+namespace Dungeon_Crawl.src.Core.View
 {
     internal class Camera
     {
