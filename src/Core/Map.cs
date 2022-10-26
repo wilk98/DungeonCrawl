@@ -1,4 +1,5 @@
 ﻿using Dungeon_Crawl.src.Objects.StaticObjects;
+
 namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
@@ -17,7 +18,14 @@ internal class Map
         {
             for (int y = 0; y < Height; y++)
             {
-                _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
+                if (x == 8 && y == 8)
+                {
+                    _field[x, y] = new Item("Sword", new Position(x, y), this);
+                }
+                else
+                {
+                    _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
+                }
             }
         }
     }
@@ -74,5 +82,10 @@ internal class Map
 
         _field[pos1.X, pos1.Y] = newPosition;
         _field[pos2.X, pos2.Y] = oldPosition;
+    }
+
+    internal void DeleteAt(Position position)
+    {
+        _field[position.X, position.Y] = new Air(position);
     }
 }
