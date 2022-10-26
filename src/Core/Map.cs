@@ -1,10 +1,9 @@
-﻿using Dungeon_Crawl.src.Objects.StaticObjects;
-namespace Dungeon_Crawl.src.Core;
+﻿namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
-    private const int _width = 151;
-    private const int _height = 67;
+    private const int _width = 67;
+    private const int _height = 151;
 
     public int Width => _width;
 
@@ -13,13 +12,46 @@ internal class Map
     public Map()
     {
         _field = new GameObject[Width, Height];
-        for (int x = 0; x < Width; x++)
+        var firstMap = ReadMap.ReadFirstMapFile();
+        for (int i = 0; i < firstMap.Length; i++)
         {
-            for (int y = 0; y < Height; y++)
+            for (int j = 0; j < firstMap[i].Length; j++)
             {
-                _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
+                if (firstMap[i][j] == '#')
+                {
+                    _field[i, j] = new Wall(new Position(i, j));
+                }
+                else if (firstMap[i][j] == ' ')
+                {
+                    _field[i, j] = new Air(new Position(i, j));
+                }
+                //else if (firstMap[i][j] == 'I')
+                //{
+                //    _field[i, j] = new Item( new Position(i, j));
+                //}
+                else if (firstMap[i][j] == 'K')
+                {
+                    _field[i, j] = new Key(new Position(i, j));
+                }
+                else if (firstMap[i][j] == 'N')
+                {
+                    _field[i, j] = new NPC(new Position(i, j));
+                }
+                //else if (firstMap[i][j] == 'M')
+                //{
+                //    _field[i, j] = new Archer(new Position(i, j));
+                //}
+                else
+                    _field[i, j] = new Wall(new Position(i, j));
             }
         }
+        //for (int x = 0; x < Width; x++)
+        //{
+        //    for (int y = 0; y < Height; y++)
+        //    {
+        //        _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
+        //    }
+        //}
     }
     public List<string> RenderMap()
     {
