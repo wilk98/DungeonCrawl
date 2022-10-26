@@ -1,9 +1,11 @@
-﻿namespace Dungeon_Crawl.src.Maps;
+﻿using Dungeon_Crawl.src.Core;
+
+namespace Dungeon_Crawl.src.Maps;
 internal class ReadMap
     {
         private static GameObject[,] _field;
-        private static int _width = 151;
-        private static int _height = 67;
+        private static int _width = 67;
+        private static int _height = 151;
         private static int count = 0;
         public static int Width => _width;
 
@@ -16,10 +18,13 @@ internal class ReadMap
             {
                 for (int j = 0; j < firstMap[i].Length; j++)
                 {
-                    _field[i,j] = firstMap[i][j];
+                    if (firstMap[i][j] == '#') 
+                    {
+                        _field[i, j] = new Wall(new Position(i, j));
+                    }
                 }
-            }   
+            }
         }
-        }
+    }
     
 
