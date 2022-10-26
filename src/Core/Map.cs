@@ -19,30 +19,30 @@ internal class Map
             {
                 if (firstMap[i][j] == '#')
                 {
-                    _field[j, i] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(j, i));
                 }
                 else if (firstMap[i][j] == ' ')
                 {
-                    _field[j, i] = new Air(new Position(i, j));
+                    _field[j, i] = new Air(new Position(j, i));
                 }
-                //else if (firstMap[i][j] == 'I')
-                //{
-                //    _field[i, j] = new Item( new Position(i, j));
-                //}
+                else if (firstMap[i][j] == 'I')
+                {
+                    _field[j, i] = new Item("Dupa",new Position(j, i), this);
+                }
                 else if (firstMap[i][j] == 'K')
                 {
-                    _field[j, i] = new Key(new Position(i, j));
+                    _field[j, i] = new Key(new Position(j, i));
                 }
                 else if (firstMap[i][j] == 'N')
                 {
-                    _field[j, i] = new NPC(new Position(i, j));
+                    _field[j, i] = new NPC(new Position(j, i));
                 }
                 //else if (firstMap[i][j] == 'M')
                 //{
                 //    _field[i, j] = new Archer(new Position(i, j));
                 //}
                 else
-                    _field[j, i] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(j, i));
             }
         }
         //for (int x = 0; x < Width; x++)
