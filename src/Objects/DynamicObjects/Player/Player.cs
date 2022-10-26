@@ -40,7 +40,7 @@ internal class Player : DynamicObject
                     case ConsoleKey.I:
                         return State.Inventory;
                     case ConsoleKey.F:
-                        Info = new Info("Test info!", new Tuple<string, string>("Yes", "No"));
+                        Info = new Info("Test info!", new Tuple<string, string>("Yes", "No"), HandleInfo);
                         return State.Info;
                     default:
                         return State.Game;
@@ -109,7 +109,7 @@ internal class Player : DynamicObject
 
     internal void HandleInfo(bool accepted)
     {
-        throw new NotImplementedException();
+        Stats.HealthPoints -= 50;
     }
 }
 

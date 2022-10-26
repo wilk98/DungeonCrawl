@@ -2,9 +2,12 @@
 {
     internal class Info
     {
+        public delegate void SelectedChoiceHandler(bool accepted);
+
         private const int _width = 50;
         private readonly Tuple<string, string> choices;
         private int _selectedChoice = 0;
+        private SelectedChoiceHandler _selectedChoiceHandler;
 
         public string Text { get; }
         public string Choices 
@@ -31,12 +34,14 @@
         {
             Resolved = true;
             Accepted = _selectedChoice == 0;
+            _selectedChoiceHandler(Accepted);
         }
 
-        public Info(string text, Tuple<string, string> choices)
+        public Info(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
         {
             Text = text;
             this.choices = choices;
+            _selectedChoiceHandler = handler;
         }
     }
 }
