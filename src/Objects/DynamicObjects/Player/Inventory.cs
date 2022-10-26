@@ -3,13 +3,7 @@
 internal class Inventory
 {
     private List<Item> _items = new()
-    {
-        new Item("Sword", new Position(0, 0)),
-        new Item("Armor", new Position(0, 0)),
-        new Item("Sword", new Position(0, 0)),
-        new Item("Arrow", new Position(0, 0)),
-        new Item("Box", new Position(0, 0)),
-    };
+    { };
     private int _selectedItem = 0;
 
     public void NextSelected() => _selectedItem = Math.Min(_selectedItem + 1, _items.Count - 1);
