@@ -19,7 +19,7 @@ namespace Dungeon_Crawl.src.Core
         {
             _currentState = State.Game;
             _map = new Map();
-            _player = new Player(new Position(34, 77), new Movement(_map));
+            _player = new Player(new Position(77, 34), new Movement(_map));
             _map.AddObject(_player.Position, _player);
             _movement = new Movement(_map);
             _camera = new Camera();
