@@ -3,8 +3,8 @@ namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
-    private const int _width = 243;
-    private const int _height = 75;
+    private const int _width = 151;
+    private const int _height = 67;
 
     public int Width => _width;
 
