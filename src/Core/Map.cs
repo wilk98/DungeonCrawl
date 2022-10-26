@@ -2,8 +2,8 @@
 internal class Map
 {
     private readonly GameObject[,] _field;
-    private const int _width = 67;
-    private const int _height = 151;
+    private const int _width = 151;
+    private const int _height = 67;
 
     public int Width => _width;
 
@@ -13,17 +13,17 @@ internal class Map
     {
         _field = new GameObject[Width, Height];
         var firstMap = ReadMap.ReadFirstMapFile();
-        for (int i = 0; i < firstMap.Length; i++)
+        for (int i = 0; i < _height; i++)
         {
-            for (int j = 0; j < firstMap[i].Length; j++)
+            for (int j = 0; j < _width; j++)
             {
                 if (firstMap[i][j] == '#')
                 {
-                    _field[i, j] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(i, j));
                 }
                 else if (firstMap[i][j] == ' ')
                 {
-                    _field[i, j] = new Air(new Position(i, j));
+                    _field[j, i] = new Air(new Position(i, j));
                 }
                 //else if (firstMap[i][j] == 'I')
                 //{
@@ -31,18 +31,18 @@ internal class Map
                 //}
                 else if (firstMap[i][j] == 'K')
                 {
-                    _field[i, j] = new Key(new Position(i, j));
+                    _field[j, i] = new Key(new Position(i, j));
                 }
                 else if (firstMap[i][j] == 'N')
                 {
-                    _field[i, j] = new NPC(new Position(i, j));
+                    _field[j, i] = new NPC(new Position(i, j));
                 }
                 //else if (firstMap[i][j] == 'M')
                 //{
                 //    _field[i, j] = new Archer(new Position(i, j));
                 //}
                 else
-                    _field[i, j] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(i, j));
             }
         }
         //for (int x = 0; x < Width; x++)
