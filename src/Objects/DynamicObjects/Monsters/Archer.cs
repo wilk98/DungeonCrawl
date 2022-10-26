@@ -1,6 +1,4 @@
-﻿using Dungeon_Crawl.src.Objects.DynamicObjects;
-
-namespace Dungeon_Crawl.src.Monsters;
+﻿namespace Dungeon_Crawl.src.Monsters;
 
 internal class Archer : Monster
 {
