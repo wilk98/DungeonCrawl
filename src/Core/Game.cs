@@ -17,13 +17,11 @@ namespace Dungeon_Crawl.src.Core
         private readonly SidebarDirector _sidebarDirector;
         private State _currentState;
         private Info? _pendingInfo;
-        private FightArea _areaFight;
         private Monster _monster;
 
         public Game()
         {
             _fight = new Fight();
-            _areaFight = new FightArea();
             _currentState = State.Game;
             _map = new Map();
             _player = new Player(new Position(77, 34), new Movement(_map));
@@ -35,6 +33,7 @@ namespace Dungeon_Crawl.src.Core
         }
         public void Start()
         {
+            _currentState = State.Fight;
             Gameloop();
         }
         private void Gameloop()
@@ -65,7 +64,6 @@ namespace Dungeon_Crawl.src.Core
 
         private void Render()
         {
-            _currentState = State.Fight;
             Console.Clear();
             switch (_currentState)
             {
@@ -81,20 +79,10 @@ namespace Dungeon_Crawl.src.Core
                     break;
                 case State.Fight:
                     {
-                        _monster = new Archer(new Position(4, 4));
+                        _monster = new Warrior(new Position(4, 4));
                         _player.Position = new Position(4, 8);
-                       // while (_player.Stats.HealthPoints > 0)
-                       // {
-                            //Console.Clear();
-                            //var view = _camera.GetView(_areaFight);
-                            //var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
-                            //_display.DisplayView(view, inventoryView);
-                            //_display.DisplayOptionsFight(_player.Position.Y, _monster.Position.Y);
-                            //int newPlayerY = _fight.PlayerTurn(_player.Position.Y, _monster.Position.Y);
-                            //var newPlayerPosition = new Position(_player.Position.X, newPlayerY);
-                            //_areaFight.ChangePositions(newPlayerPosition, _player.Position);
-                            _fight.FightRound(_player, _monster);
-                      //  }
+                        _fight.FightRound(_player, _monster);
+                        _currentState = State.Game;
                         break;
                     }
                 case State.Info:

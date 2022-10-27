@@ -85,7 +85,6 @@ internal class FightArea
 
         _field[pos1.X, pos1.Y] = newPosition;
         _field[pos2.X, pos2.Y] = oldPosition;
-        Console.ReadLine();
     }
 }
 
