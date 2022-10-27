@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
-    internal class ItemController : Controller
+    internal class ItemController : Controller<Item>
     {
         public ItemController(Map map, Player player) : base(map, player)
         {
@@ -33,12 +33,8 @@
             return null;
         }
 
-        protected override Info GetInfo(Item item)
-        {
-             return new Info($"Pick {item.Name}?", new Tuple<string, string>("Yes", "No"), PickItemInfo);
-        }
 
-        internal override void PickItemInfo(bool accepted)
+        internal override void OnFound(bool accepted)
         {
             if (accepted)
             {
@@ -49,6 +45,11 @@
             {
                 IgnoreItemSearching = 2;
             }
+        }
+
+        protected override Info GetInfo(Item foundedItem)
+        {
+            return new Info($"Pick {foundedItem.Name}?", new Tuple<string, string>("Yes", "No"), OnFound);
         }
     }
 }
