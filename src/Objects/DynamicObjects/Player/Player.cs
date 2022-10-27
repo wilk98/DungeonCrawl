@@ -9,6 +9,7 @@ internal class Player : DynamicObject
     private readonly KeyboardController _keyboardController = new();
     private readonly Movement movementController;
     private readonly Map map;
+    private readonly ItemController controller;
 
     public Player(Position position, Movement movementController, Map map) : base(position)
     {
@@ -20,6 +21,7 @@ internal class Player : DynamicObject
         Inventory = new Inventory();
         this.movementController = movementController;
         this.map = map;
+        controller = new(map, this);
     }
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
@@ -38,7 +40,7 @@ internal class Player : DynamicObject
                     case ConsoleKey.S:
                     case ConsoleKey.A:
                     case ConsoleKey.D:
-                        if (PickItem() is State.Info) return State.Info;
+                        if (controller.PickItem() is State.Info) return State.Info;
                         MakeMove(key, movementController);
                         return State.Game;
                     case ConsoleKey.I:
@@ -103,48 +105,5 @@ internal class Player : DynamicObject
 
     }
 
-    private Item? SearchItem()
-    {
-        {
-            if (GetItem(new Position(Position.X, Position.Y + 1)) is Item item) return item;
-        }
-        {
-            if (GetItem(new Position(Position.X, Position.Y - 1)) is Item item) return item;
-        }
-        {
-            if (GetItem(new Position(Position.X + 1, Position.Y)) is Item item) return item;
-        }
-        {
-            if (GetItem(new Position(Position.X - 1, Position.Y)) is Item item) return item;
-        }
-        return null;
-    }
-
-    private Item? GetItem(Position position)
-    {
-        if (map.At(position) is Item)
-        {
-            return (Item) map.At(position);
-        }
-        return null;
-    }
-
-    internal State PickItem()
-    {
-        var item = SearchItem();
-        if (item is null) return State.Game;
-
-
-        Info = new Info($"Pick {item.Name}?", new Tuple<string, string>("Yes", "No"), PickItemInfo);
-        return State.Info;
-    }
-    internal void PickItemInfo(bool accepted)
-    {
-        if (accepted)
-        {
-            var item = SearchItem();
-            item?.PickUp(this);
-        }
-    }
 }
 
