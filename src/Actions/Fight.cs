@@ -97,7 +97,7 @@ internal class Fight
     {
 
     }
-    public void FightRound(Player player, Monster monster)
+    public bool FightRound(Player player, Monster monster)
     {
         while (player.Stats.HealthPoints > 0 && monster.Stats.HealthPoints > 0)
         {
@@ -105,6 +105,11 @@ internal class Fight
             MonsterTurn(player, monster);
         }
         _fightArea.DeletePositions(player.Position);
+        if (player.Stats.HealthPoints > 0)
+            return true;
+        else
+            return false;
+        
     }
     public void PlayerAttack(Player player,Monster monster)
     {
