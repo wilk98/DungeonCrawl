@@ -6,7 +6,7 @@ internal class Warrior : Monster
     {
     }
 
-    protected override string Symbol { get => "W"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "W";
 
     public override void Update()
     {
