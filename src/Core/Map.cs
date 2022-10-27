@@ -27,7 +27,8 @@ internal class Map
                 }
                 else if (firstMap[i][j] == 'I')
                 {
-                    _field[j, i] = new Item("Dupa",new Position(j, i), this);
+                    var items = new ItemList(new Position(j, i), this);
+                    _field[j, i] = items.RandomItem();
                 }
                 else if (firstMap[i][j] == 'K')
                 {
