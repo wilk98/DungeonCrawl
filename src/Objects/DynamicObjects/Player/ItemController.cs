@@ -6,6 +6,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
     {
         private readonly Map map;
         private readonly Player player;
+        private int IgnoreItemSearching = 0;
 
         public ItemController(Map map, Player player)
         {
@@ -42,7 +43,8 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
         internal State PickItem()
         {
             var item = SearchItem();
-            if (item is null) return State.Game;
+            IgnoreItemSearching = Math.Max(0, --IgnoreItemSearching);
+            if (item is null || IgnoreItemSearching != 0) return State.Game;
 
 
             player.Info = new Info($"Pick {item.Name}?", new Tuple<string, string>("Yes", "No"), PickItemInfo);
@@ -54,6 +56,10 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             {
                 var item = SearchItem();
                 item?.PickUp(player);
+            }
+            else
+            {
+                IgnoreItemSearching = 2;
             }
         }
     }
