@@ -11,10 +11,12 @@ internal class Player : DynamicObject
 
     public Player(Position position, Movement movementController, Map map) : base(position)
     {
-        Stats = new Stats();
-        Stats.HealthPoints = 100;
-        Stats.Strength = 15;
-        Stats.Defense = 5;
+        Stats = new Stats
+        {
+            HealthPoints = 100,
+            Strength = 15,
+            Defense = 5
+        };
 
         Inventory = new Inventory();
         this.movementController = movementController;
@@ -24,7 +26,7 @@ internal class Player : DynamicObject
         monsterDialog = new(map, this);
     }
 
-    protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "P";
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
     public AskDialog? Info { get; internal set; }

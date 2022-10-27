@@ -11,7 +11,7 @@ internal class Warrior : Monster
         Stats.Defense = 3;
     }
 
-    protected override string Symbol { get => "W"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "W";
 
     public override void Update()
     {

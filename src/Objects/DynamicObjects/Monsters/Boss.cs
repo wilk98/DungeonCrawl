@@ -8,7 +8,7 @@ internal class Boss : Monster
     {
     }
 
-    protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    protected override string Symbol => "B";
 
     public override string Render()
     {
