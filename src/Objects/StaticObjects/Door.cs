@@ -6,6 +6,6 @@
         {
         }
 
-        protected override string Symbol { get => "D"; set => throw new NotImplementedException(); }
+        protected override string Symbol => "D";
     }
 }
