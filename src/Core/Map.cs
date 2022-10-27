@@ -1,4 +1,6 @@
-﻿namespace Dungeon_Crawl.src.Core;
+﻿using Dungeon_Crawl.src.Objects.DynamicObjects.Monsters;
+
+namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
@@ -38,10 +40,11 @@ internal class Map
                 {
                     _field[j, i] = new NPC(new Position(j, i));
                 }
-                //else if (firstMap[i][j] == 'M')
-                //{
-                //    _field[i, j] = new Archer(new Position(i, j));
-                //}
+                else if (firstMap[i][j] == 'M')
+                {
+                    var monsters = new MonsterList(new Position(j, i));
+                    _field[j, i] = monsters.RandomMonster();
+                }
                 else
                     _field[j, i] = new Wall(new Position(j, i));
             }
