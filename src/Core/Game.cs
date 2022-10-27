@@ -27,7 +27,6 @@
         }
         public void Start()
         {
-            //_currentState = State.Fight;
             Gameloop();
         }
         private void Gameloop()
