@@ -14,9 +14,13 @@ namespace Dungeon_Crawl.src.Core
         private readonly SidebarDirector _sidebarDirector;
         private State _currentState;
         private Info? _pendingInfo;
+        private FightArea _areaFight;
+        private Monster _monster;
 
         public Game()
         {
+
+            _areaFight = new FightArea();
             _currentState = State.Game;
             _map = new Map();
             _player = new Player(new Position(77, 34), new Movement(_map));
@@ -42,12 +46,14 @@ namespace Dungeon_Crawl.src.Core
                 {
                     _pendingInfo = _player.Info;
                 }
+                if (_currentState == State.Fight)
+                    Update();
             }
         }
 
         private void Update()
         {
-            
+
         }
 
         private void ProcessInput()
@@ -58,6 +64,7 @@ namespace Dungeon_Crawl.src.Core
 
         private void Render()
         {
+            _currentState = State.Fight;
             Console.Clear();
             switch (_currentState)
             {
@@ -72,6 +79,16 @@ namespace Dungeon_Crawl.src.Core
                 case State.Pause:
                     break;
                 case State.Fight:
+                    {
+                        _monster = new Archer(new Position(4, 4));
+                        _player.Position = new Position(4, 8);
+                        _areaFight.AddObject(_player.Position, _player);
+                        _areaFight.AddObject(_monster.Position, _monster);
+                        var view = _camera.GetView(_areaFight);
+                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                        _display.DisplayView(view, inventoryView);
+                        _display.DisplayOptionsFight();
+                    }
                     break;
                 case State.Info:
                     {

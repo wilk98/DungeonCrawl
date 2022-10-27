@@ -10,24 +10,25 @@ namespace Dungeon_Crawl.src.Core;
 internal class FightArea
 {
     private readonly GameObject[,] _field;
-    private const int _width = 5;
-    private const int _height = 10;
+    private const int _width = 13;
+    private const int _height = 9;
 
     public int Width => _width;
 
     public int Height => _height;
     public FightArea()
     {
-        _field = new GameObject[Width, Height];
-        for (int x = 0; x < Width; x++)
+        _field = new GameObject[Height, Width];
+        var areaFight = ReadMap.ReadAreaFight();
+        for (int x = 0; x < Height; x++)
         {
-            for (int y = 0; y < Height; y++)
+            for (int y = 0; y < Width; y++)
             {
-                if (x == 0 || x == Width-1 || y == 0 || y == Height-1)
+                if (areaFight[x][y]== '#')
                 {
                     _field[x, y] = new Wall(new Position(x, y));
                 }
-                else
+                else if (areaFight[x][y]== ' ')
                 {
                     _field[x, y] = new Air(new Position(x, y));
                 }
@@ -36,13 +37,13 @@ internal class FightArea
     }
     public List<string> RenderAreaFight()
     {
-        //Update();
-        //Render();
+        Update();
+        Render();
         var map = new List<string>();
-        for (int y = 0; y < Height; y++)
+        for (int y = 0; y < Width; y++)
         {
-            var row = new string[Width];
-            for (int x = 0; x < Width; x++)
+            var row = new string[Height];
+            for (int x = 0; x < Height; x++)
             {
                 row[x] = At(new Position(x, y)).ToString();
             }
@@ -52,11 +53,38 @@ internal class FightArea
     }
     public GameObject At(Position position)
     {
-        if (position.X < 0 || position.X >= Width)
+        if (position.Y < 0 || position.Y >= Width)
             return new Wall(position);
-        if (position.Y < 0 || position.Y >= Height)
+        if (position.X < 0 || position.X >= Height)
             return new Wall(position);
         return _field[position.X, position.Y];
+    }
+    private void Update()
+    {
+        foreach (var gameObject in _field)
+        {
+            gameObject.Update();
+        }
+    }
+
+    private void Render()
+    {
+        foreach (var gameObject in _field)
+        {
+            gameObject.Render();
+        }
+    }
+    public void AddObject(Position position, GameObject gameObject)
+    {
+        _field[position.X, position.Y] = gameObject;
+    }
+    public void ChangePositions(Position pos1, Position pos2)
+    {
+        var oldPosition = At(pos1);
+        var newPosition = At(pos2);
+
+        _field[pos1.X, pos1.Y] = newPosition;
+        _field[pos2.X, pos2.Y] = oldPosition;
     }
 }
 

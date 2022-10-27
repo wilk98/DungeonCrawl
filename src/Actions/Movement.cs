@@ -5,9 +5,14 @@ namespace Dungeon_Crawl.src.Actions
     internal class Movement
     {
         private Map _map;
+        private FightArea _area;
         public Movement(Map map)
         {
             _map = map;
+        }
+        public Movement(FightArea fightArea)
+        {
+            _area = fightArea;
         }
         private bool IsValidMove(Position positionTo)
         {

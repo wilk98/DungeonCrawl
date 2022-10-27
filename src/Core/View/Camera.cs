@@ -29,5 +29,17 @@ namespace Dungeon_Crawl.src.Core.View
             }
             return cameraView;
         }
+        public List<string> GetView(FightArea map)
+        {
+
+            var mapView = map.RenderAreaFight();
+            var cameraView = new List<string>();
+            var verticalRange = mapView.ToArray();
+            foreach (var line in verticalRange)
+            {
+                cameraView.Add(line);
+            }
+            return cameraView;
+        }
     }
 }
