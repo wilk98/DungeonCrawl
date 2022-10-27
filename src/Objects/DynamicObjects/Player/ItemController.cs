@@ -1,20 +1,13 @@
-﻿using Dungeon_Crawl.src.Core;
-
-namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
+﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
-    internal class ItemController
+    internal class ItemController : Controller
     {
-        private readonly Map map;
-        private readonly Player player;
-        private int IgnoreItemSearching = 0;
-
-        public ItemController(Map map, Player player)
+        public ItemController(Map map, Player player) : base(map, player)
         {
-            this.map = map;
-            this.player = player;
+
         }
 
-        private Item? SearchItem()
+        protected override Item? SearchItem()
         {
             {
                 if (GetItem(new Position(player.Position.X, player.Position.Y + 1)) is Item item) return item;
@@ -31,7 +24,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             return null;
         }
 
-        private Item? GetItem(Position position)
+        protected override Item? GetItem(Position position)
         {
             if (map.At(position) is Item)
             {
@@ -40,17 +33,12 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             return null;
         }
 
-        internal State PickItem()
+        protected override Info GetInfo(Item item)
         {
-            var item = SearchItem();
-            IgnoreItemSearching = Math.Max(0, --IgnoreItemSearching);
-            if (item is null || IgnoreItemSearching != 0) return State.Game;
-
-
-            player.Info = new Info($"Pick {item.Name}?", new Tuple<string, string>("Yes", "No"), PickItemInfo);
-            return State.Info;
+             return new Info($"Pick {item.Name}?", new Tuple<string, string>("Yes", "No"), PickItemInfo);
         }
-        internal void PickItemInfo(bool accepted)
+
+        internal override void PickItemInfo(bool accepted)
         {
             if (accepted)
             {
