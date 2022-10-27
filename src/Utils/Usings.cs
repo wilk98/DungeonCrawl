@@ -8,3 +8,4 @@ global using Dungeon_Crawl.src.Objects.StaticObjects;
 global using Dungeon_Crawl.src.Objects.DynamicObjects;
 global using Dungeon_Crawl.src.Monsters;
 global using Dungeon_Crawl.src.Core;
+global using Dungeon_Crawl.src.Actions;
