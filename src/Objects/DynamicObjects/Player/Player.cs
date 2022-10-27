@@ -10,10 +10,12 @@ internal class Player : DynamicObject
 
     public Player(Position position, Movement movementController, Map map) : base(position)
     {
-        Stats = new Stats();
-        Stats.HealthPoints = 100;
-        Stats.Strength = 15;
-        Stats.Defense = 5;
+        Stats = new Stats
+        {
+            HealthPoints = 100,
+            Strength = 15,
+            Defense = 5
+        };
 
         Inventory = new Inventory();
         this.movementController = movementController;
