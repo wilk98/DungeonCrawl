@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Core.View
 {
-    internal class Info
+    internal class AskDialog
     {
         public delegate void SelectedChoiceHandler(bool accepted);
 
@@ -37,7 +37,7 @@
             _selectedChoiceHandler(Accepted);
         }
 
-        public Info(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
+        public AskDialog(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
         {
             Text = text;
             this.choices = choices;

@@ -25,7 +25,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
         }
 
         internal abstract void OnFound(bool accepted);
-        protected abstract Info GetInfo(T foundedItem);
+        protected abstract AskDialog GetInfo(T foundedItem);
 
         protected virtual T? SearchItem()
         {
