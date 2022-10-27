@@ -1,11 +1,11 @@
 ﻿namespace Dungeon_Crawl.src.Objects
 {
-    abstract internal class GameObject
+    internal abstract class GameObject
     {
         public virtual bool IsPassable { get; } = false;
 
         protected abstract string Symbol { get;}
-        public Position Position { get; protected set; }
+        public Position Position { get; set; }
 
         protected GameObject(Position position)
         {
