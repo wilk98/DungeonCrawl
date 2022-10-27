@@ -85,10 +85,20 @@
                             _monster = new Warrior(new Position(4, 4));
                         }
                         _player.Position = new Position(4, 8);
-                        _fight.FightRound(_player, _monster);
-                        _player.Position = new Position(oldPositionX, oldPositionY);
-                        _map.DeleteMonster(_player.Position);
-                        _currentState = State.Game;
+                        bool win =_fight.FightRound(_player, _monster);
+                        if (win)
+                        {
+                            _player.Position = new Position(oldPositionX, oldPositionY);
+                            _map.DeleteMonster(_player.Position);
+                            _currentState = State.Game;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("GAME OVER");
+                            Console.ReadLine();
+                            Environment.Exit(0);
+                        }
                         break;
                     }
                 case State.Info:
