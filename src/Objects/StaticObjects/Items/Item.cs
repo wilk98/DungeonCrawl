@@ -1,23 +1,26 @@
-﻿using Dungeon_Crawl.src.Core;
-using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
-
-namespace Dungeon_Crawl.src.Objects.StaticObjects.Items
+﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items
 {
     internal class Item : StaticObject, IPickable
     {
         private readonly Map _map;
+        public Stats Stats { get; internal set; }
+        public virtual string Name { get; internal set; }
 
         public override bool IsPassable => true;
         public Item(Position position, Map map) : base(position)
         {
+            Stats = new Stats
+            {
+                HealthPoints = 0,
+                Strength = 0,
+                Defense = 0
+            };
             _map = map;
         }
 
         public bool IsPickable => true;
 
-        public virtual string Name { get; internal set; }
         protected override string Symbol => "I";
-
 
         public bool PickUp(Player player)
         {
