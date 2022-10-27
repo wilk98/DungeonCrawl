@@ -6,7 +6,7 @@ internal class Archer : Monster
     public Archer(Position position) : base(position)
     {
         Stats = new Stats();
-        Stats.HealthPoints = 50;
+        Stats.HealthPoints = 45;
         Stats.Strength = 10;
         Stats.Defense = 2;
     }
@@ -18,6 +18,7 @@ internal class Archer : Monster
         return;
     }
 
+   
     public override string Render()
     {
         return "";

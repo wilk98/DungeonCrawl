@@ -6,8 +6,8 @@ internal class Warrior : Monster
     public Warrior(Position position) : base(position)
     {
         Stats = new Stats();
-        Stats.HealthPoints = 70;
-        Stats.Strength = 15;
+        Stats.HealthPoints = 60;
+        Stats.Strength = 12;
         Stats.Defense = 3;
     }
 
