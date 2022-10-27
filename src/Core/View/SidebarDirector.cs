@@ -36,5 +36,19 @@ namespace Dungeon_Crawl.src.Core.View
             _sidebar.AddCenteredText(info.Choices);
             return _sidebar.CreateFrame(height);
         }
+        public List<string> MakeInfobarFight(Stats stats, Stats monsterStats, int height)
+        {
+            _sidebar.AddCenteredText("Monster Stats");
+            _sidebar.AddLeftAlignedText($" Health: {monsterStats.HealthPoints}");
+            _sidebar.AddLeftAlignedText($" Strength: {monsterStats.Strength}");
+            _sidebar.AddLeftAlignedText($" Defence: {monsterStats.Defense}");
+            _sidebar.AddHorizontalRule();
+            _sidebar.AddCenteredText(" Stats");
+            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
+            _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
+            _sidebar.AddLeftAlignedText($" Defence: {stats.Defense}");
+            _sidebar.AddHorizontalRule();
+            return _sidebar.CreateFrame(height);
+        }
     }
 }
