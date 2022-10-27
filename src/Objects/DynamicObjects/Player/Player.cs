@@ -22,7 +22,7 @@ internal class Player : DynamicObject
         NPCdialog = new(map, this);
     }
 
-    protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "P";
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
     public AskDialog? Info { get; internal set; }
