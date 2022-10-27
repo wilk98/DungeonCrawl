@@ -6,16 +6,15 @@ internal class Archer : Monster
     {
     }
 
-    protected override string Symbol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    protected override string Symbol { get => "A"; set => throw new NotImplementedException(); }
 
     public override string Render()
     {
-        throw new NotImplementedException();
+        return Symbol;
     }
 
     public override void Update()
     {
-        throw new NotImplementedException();
     }
 }
 
