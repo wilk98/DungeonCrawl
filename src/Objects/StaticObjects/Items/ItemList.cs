@@ -9,12 +9,12 @@ internal class ItemList
         {
             new Sword(position, map),
             new Armor(position, map),
-            //new Item("Shield", position, map),
-            //new Item("Helmet", position, map),
-            //new Item("Greaves", position, map),
-            //new Item("Health potion", position, map),
-            //new Item("Strength potion", position, map),
-            //new Item("Defense potion", position, map),
+            new Shield(position, map),
+            new Helmet(position, map),
+            new Greaves(position, map),
+            new HealthPotion(position, map),
+            new StrengthPotion(position, map),
+            new DefensePotion(position, map),
         };
     }
 
