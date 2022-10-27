@@ -10,3 +10,4 @@ global using Dungeon_Crawl.src.Monsters;
 global using Dungeon_Crawl.src.Core;
 global using Dungeon_Crawl.src.Core.View;
 global using Dungeon_Crawl.src.Actions;
+global using Dungeon_Crawl.src.Objects.StaticObjects.Items;
