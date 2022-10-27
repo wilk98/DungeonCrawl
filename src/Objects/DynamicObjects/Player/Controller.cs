@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
-    internal abstract class Controller
+    internal abstract class Controller<T>
     {
         protected readonly Map map;
         protected readonly Player player;
@@ -13,7 +13,7 @@
         }
 
 
-        internal State PickItem()
+        internal virtual State PickItem()
         {
             var item = SearchItem();
             IgnoreItemSearching = Math.Max(0, --IgnoreItemSearching);
@@ -22,9 +22,9 @@
             return State.Info;
         }
 
-        internal abstract void PickItemInfo(bool accepted);
-        protected abstract Info GetInfo(Item item);
-        protected abstract Item? GetItem(Position position);
-        protected abstract Item? SearchItem();
+        internal abstract void OnFound(bool accepted);
+        protected abstract Info GetInfo(T foundedItem);
+        protected abstract T? GetItem(Position position);
+        protected abstract T? SearchItem();
     }
 }
