@@ -4,5 +4,5 @@ internal class Helmet : Item
     public Helmet(Position position, Map map) : base(position, map)
     {
     }
-    public override string Name => "Shield";
+    public override string Name => "Helmet";
 }

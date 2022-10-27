@@ -4,5 +4,5 @@ internal class DefensePotion : Item
     public DefensePotion(Position position, Map map) : base(position, map)
     {
     }
-    public override string Name => "Shield";
+    public override string Name => "Defense Potion";
 }
