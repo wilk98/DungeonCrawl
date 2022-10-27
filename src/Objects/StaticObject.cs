@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects
 {
-    abstract internal class StaticObject : GameObject
+    internal abstract class StaticObject : GameObject
     {
         protected StaticObject(Position position) : base(position)
         {

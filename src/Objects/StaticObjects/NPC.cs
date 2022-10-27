@@ -14,7 +14,7 @@ internal class NPC : StaticObject
 
     public override bool IsPassable => true;
 
-    protected override string Symbol { get => "N"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "N";
     public string GetNextPhrase()
     {
         currentPhrase = Math.Min(++currentPhrase, dialog.Count - 1);
