@@ -1,10 +1,4 @@
-﻿using Dungeon_Crawl.src.Actions;
-using Dungeon_Crawl.src.Core.View;
-using Dungeon_Crawl.src.Objects.DynamicObjects;
-using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
-using System.Numerics;
-
-namespace Dungeon_Crawl.src.Core
+﻿namespace Dungeon_Crawl.src.Core
 {
     internal class Game
     {
