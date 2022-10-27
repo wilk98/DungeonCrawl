@@ -1,6 +1,4 @@
-﻿using Dungeon_Crawl.src.Objects.DynamicObjects.Monsters;
-
-namespace Dungeon_Crawl.src.Core;
+﻿namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;

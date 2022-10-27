@@ -7,7 +7,7 @@ internal class Key : StaticObject, IPickable
     {
     }
 
-    protected override string Symbol { get => "K"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "K";
     public bool IsPickable { get; }
     public bool PickUp(Player player)
     {
