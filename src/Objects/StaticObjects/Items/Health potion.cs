@@ -3,7 +3,10 @@ internal class HealthPotion : Item
 {
     public HealthPotion(Position position, Map map) : base(position, map)
     {
-        Stats.HealthPoints += 50;
+        //Stats.Strength = 0;
+        //Stats.Defense = 0;
+        Stats.HealthPoints = 20;
     }
     public override string Name => "Health Potion";
+
 }

@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items
 {
-    internal class Item : StaticObject, IPickable
+    internal abstract class Item : StaticObject, IPickable
     {
         private readonly Map _map;
         public Stats Stats { get; internal set; }
@@ -9,13 +9,8 @@
         public override bool IsPassable => true;
         public Item(Position position, Map map) : base(position)
         {
-            Stats = new Stats
-            {
-                HealthPoints = 0,
-                Strength = 0,
-                Defense = 0
-            };
             _map = map;
+            Stats = new Stats();
         }
 
         public bool IsPickable => true;
@@ -25,6 +20,7 @@
         public bool PickUp(Player player)
         {
             player.Inventory.AddItem(this);
+            player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
             _map.DeleteAt(Position);
             return true;
         }
