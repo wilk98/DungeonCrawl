@@ -1,14 +1,17 @@
 ﻿using Dungeon_Crawl.src.Actions;
 using Dungeon_Crawl.src.Core.View;
+using Dungeon_Crawl.src.Objects.DynamicObjects;
 using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+using System.Numerics;
 
 namespace Dungeon_Crawl.src.Core
 {
     internal class Game
     {
+        private Fight _fight;
         private Map _map;
         private readonly Camera _camera;
-        private readonly Player _player;
+        public Player _player;
         private readonly Display _display;
         private readonly Movement _movement;
         private readonly SidebarDirector _sidebarDirector;
@@ -19,7 +22,7 @@ namespace Dungeon_Crawl.src.Core
 
         public Game()
         {
-
+            _fight = new Fight();
             _areaFight = new FightArea();
             _currentState = State.Game;
             _map = new Map();
@@ -46,8 +49,6 @@ namespace Dungeon_Crawl.src.Core
                 {
                     _pendingInfo = _player.Info;
                 }
-                if (_currentState == State.Fight)
-                    Update();
             }
         }
 
@@ -82,14 +83,20 @@ namespace Dungeon_Crawl.src.Core
                     {
                         _monster = new Archer(new Position(4, 4));
                         _player.Position = new Position(4, 8);
-                        _areaFight.AddObject(_player.Position, _player);
-                        _areaFight.AddObject(_monster.Position, _monster);
-                        var view = _camera.GetView(_areaFight);
-                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
-                        _display.DisplayView(view, inventoryView);
-                        _display.DisplayOptionsFight();
+                       // while (_player.Stats.HealthPoints > 0)
+                       // {
+                            //Console.Clear();
+                            //var view = _camera.GetView(_areaFight);
+                            //var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                            //_display.DisplayView(view, inventoryView);
+                            //_display.DisplayOptionsFight(_player.Position.Y, _monster.Position.Y);
+                            //int newPlayerY = _fight.PlayerTurn(_player.Position.Y, _monster.Position.Y);
+                            //var newPlayerPosition = new Position(_player.Position.X, newPlayerY);
+                            //_areaFight.ChangePositions(newPlayerPosition, _player.Position);
+                            _fight.FightRound(_player, _monster);
+                      //  }
+                        break;
                     }
-                    break;
                 case State.Info:
                     {
                         if (_pendingInfo is null)

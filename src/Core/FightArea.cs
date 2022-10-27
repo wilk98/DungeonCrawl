@@ -59,7 +59,7 @@ internal class FightArea
             return new Wall(position);
         return _field[position.X, position.Y];
     }
-    private void Update()
+    public void Update()
     {
         foreach (var gameObject in _field)
         {
@@ -85,6 +85,7 @@ internal class FightArea
 
         _field[pos1.X, pos1.Y] = newPosition;
         _field[pos2.X, pos2.Y] = oldPosition;
+        Console.ReadLine();
     }
 }
 
