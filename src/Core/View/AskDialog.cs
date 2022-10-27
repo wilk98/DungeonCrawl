@@ -1,47 +1,46 @@
-﻿namespace Dungeon_Crawl.src.Core.View
+﻿namespace Dungeon_Crawl.src.Core.View;
+
+internal class AskDialog
 {
-    internal class AskDialog
+    public delegate void SelectedChoiceHandler(bool accepted);
+
+    private const int _width = 50;
+    protected readonly Tuple<string, string> choices;
+    protected int _selectedChoice = 0;
+    private SelectedChoiceHandler _selectedChoiceHandler;
+
+    public string Text { get; }
+    public virtual string Choices
     {
-        public delegate void SelectedChoiceHandler(bool accepted);
-
-        private const int _width = 50;
-        private readonly Tuple<string, string> choices;
-        private int _selectedChoice = 0;
-        private SelectedChoiceHandler _selectedChoiceHandler;
-
-        public string Text { get; }
-        public string Choices
+        get
         {
-            get
+            if (_selectedChoice == 0)
             {
-                if (_selectedChoice == 0)
-                {
-                    return $"<{choices.Item1}> {choices.Item2}";
-                }
-                else
-                {
-                    return $"{choices.Item1} <{choices.Item2}>";
-                }
+                return $"<{choices.Item1}> {choices.Item2}";
+            }
+            else
+            {
+                return $"{choices.Item1} <{choices.Item2}>";
             }
         }
+    }
 
-        public void SelectLeft() => _selectedChoice = 0;
-        public void SelectRight() => _selectedChoice = 1;
-        public bool Accepted { get; private set; }
-        public bool Resolved { get; private set; }
+    public virtual void SelectLeft() => _selectedChoice = 0;
+    public virtual void SelectRight() => _selectedChoice = 1;
+    public bool Accepted { get; private set; }
+    public bool Resolved { get; private set; }
 
-        internal void Select()
-        {
-            Resolved = true;
-            Accepted = _selectedChoice == 0;
-            _selectedChoiceHandler(Accepted);
-        }
+    internal void Select()
+    {
+        Resolved = true;
+        Accepted = _selectedChoice == 0;
+        _selectedChoiceHandler(Accepted);
+    }
 
-        public AskDialog(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
-        {
-            Text = text;
-            this.choices = choices;
-            _selectedChoiceHandler = handler;
-        }
+    public AskDialog(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
+    {
+        Text = text;
+        this.choices = choices;
+        _selectedChoiceHandler = handler;
     }
 }
