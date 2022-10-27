@@ -43,11 +43,11 @@ internal class Fight
                             break;
                         case "2":
                             HealPlayer(player);
-                            Console.WriteLine("No implemented yet");
+                            Console.WriteLine("\t\t\t\tNo implemented yet");
                             condition= false;
                             break;
                         default:
-                            Console.WriteLine("Valid choice. Choose 1 or 2");
+                            Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
                             break;
                     }
                 }
@@ -67,11 +67,11 @@ internal class Fight
                             break;
                         case "2":
                             HealPlayer(player);
-                            Console.WriteLine("No implemented yet");
+                            Console.WriteLine("\t\t\t\tNo implemented yet");
                             condition = false;
                             break;
                         default:
-                            Console.WriteLine("Valid choice. Choose 1 or 2");
+                            Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
                             break;
                      }
                 }
@@ -119,7 +119,7 @@ internal class Fight
     {
         int attackPlayer = player.Stats.Strength;
         int defenceMonster = monster.Stats.Defense;
-        monster.Stats.HealthPoints = monster.Stats.HealthPoints - (attackPlayer - defenceMonster);
+        monster.Stats.HealthPoints = monster.Stats.HealthPoints - ((3*attackPlayer - 2*defenceMonster)/2);
 
     }
     public void MonsterTurn(Player player, Monster monster)
@@ -129,7 +129,14 @@ internal class Fight
         {
             int attackMonster = monster.Stats.Strength;
             int defencePlayer = player.Stats.Defense;
-            player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
+            if (attackMonster < defencePlayer)
+            {
+                player.Stats.HealthPoints -= 1;
+            }
+            else
+            {
+                player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
+            }
         }
         else if (monster is Warrior)
         {
@@ -137,7 +144,14 @@ internal class Fight
             {
                 int attackMonster = monster.Stats.Strength;
                 int defencePlayer = player.Stats.Defense;
-                player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
+                if (attackMonster < defencePlayer)
+                {
+                    player.Stats.HealthPoints -= 1;
+                }
+                else
+                {
+                    player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
+                }
             }
         }
     }
