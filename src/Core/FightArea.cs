@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dungeon_Crawl.src.Objects;
 using Dungeon_Crawl.src.Objects.StaticObjects;
 
 namespace Dungeon_Crawl.src.Core;
@@ -85,6 +86,10 @@ internal class FightArea
 
         _field[pos1.X, pos1.Y] = newPosition;
         _field[pos2.X, pos2.Y] = oldPosition;
+    }
+    public void DeletePositions(Position pos)
+    {
+        _field[pos.X, pos.Y] = new Air(pos);
     }
 }
 

@@ -7,6 +7,7 @@ internal class Player : DynamicObject
     private readonly Map map;
     private readonly ItemController itemController;
     private readonly NPCdialog NPCdialog;
+    private readonly MonsterDialog monsterDialog;
 
     public Player(Position position, Movement movementController, Map map) : base(position)
     {
@@ -20,6 +21,7 @@ internal class Player : DynamicObject
         this.map = map;
         itemController = new(map, this);
         NPCdialog = new(map, this);
+        monsterDialog = new(map, this);
     }
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
@@ -40,6 +42,7 @@ internal class Player : DynamicObject
                     case ConsoleKey.D:
                         if (itemController.PickItem() is State.Info) return State.Info;
                         if (NPCdialog.PickItem() is State.Info) return State.Info;
+                        if (monsterDialog.PickItem() is State.Info) return State.Fight;
                         MakeMove(key, movementController);
                         return State.Game;
                     case ConsoleKey.I:

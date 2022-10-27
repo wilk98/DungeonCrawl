@@ -109,4 +109,44 @@ internal class Map
     {
         _field[position.X, position.Y] = new Air(position);
     }
+    internal string SearchMonster(int x, int y)
+    {
+        if (_field[x - 1, y] is Monster)
+        {
+
+            return _field[x - 1, y].ToString();
+        }
+        else if (_field[x + 1, y] is Monster)
+        {
+            return _field[x + 1, y].ToString();
+        }
+        else if (_field[x, y + 1] is Monster)
+        {
+            return _field[x, y + 1].ToString();
+        }
+        else if (_field[x, y - 1] is Monster)
+        {
+            return _field[x, y -1].ToString();
+        }
+        return null;
+    }
+    internal void DeleteMonster(Position position)
+    {
+        if (_field[position.X - 1, position.Y] is Monster)
+        {
+            _field[position.X-1, position.Y] = new Air(new Position(position.X - 1, position.Y));
+        }
+        else if (_field[position.X + 1, position.Y] is Monster)
+        {
+            _field[position.X + 1, position.Y] = new Air(new Position(position.X + 1, position.Y));
+        }
+        else if (_field[position.X, position.Y - 1] is Monster)
+        {
+            _field[position.X, position.Y - 1] = new Air(new Position(position.X, position.Y -1));
+        }
+        else if (_field[position.X, position.Y +1] is Monster)
+        {
+            _field[position.X, position.Y + 1] = new Air(new Position(position.X , position.Y+1));
+        }
+    }
 }

@@ -16,7 +16,6 @@ namespace Dungeon_Crawl.src.Core
         private readonly Movement _movement;
         private readonly SidebarDirector _sidebarDirector;
         private State _currentState;
-        private Info? _pendingInfo;
         private Monster _monster;
         private AskDialog? _pendingInfo;
 
@@ -34,7 +33,7 @@ namespace Dungeon_Crawl.src.Core
         }
         public void Start()
         {
-            _currentState = State.Fight;
+            //_currentState = State.Fight;
             Gameloop();
         }
         private void Gameloop()
@@ -80,9 +79,21 @@ namespace Dungeon_Crawl.src.Core
                     break;
                 case State.Fight:
                     {
-                        _monster = new Warrior(new Position(4, 4));
+                        int oldPositionX = _player.Position.X;
+                        int oldPositionY = _player.Position.Y;
+                        string monsterString = _map.SearchMonster(oldPositionX,oldPositionY);
+                        if (monsterString == "A")
+                        {
+                            _monster = new Archer(new Position(4, 4));
+                        }
+                        else if (monsterString == "W")
+                        {
+                            _monster = new Warrior(new Position(4, 4));
+                        }
                         _player.Position = new Position(4, 8);
                         _fight.FightRound(_player, _monster);
+                        _player.Position = new Position(oldPositionX, oldPositionY);
+                        _map.DeleteMonster(_player.Position);
                         _currentState = State.Game;
                         break;
                     }
@@ -102,5 +113,6 @@ namespace Dungeon_Crawl.src.Core
                     break;
             }
         }
+
     }
 }
