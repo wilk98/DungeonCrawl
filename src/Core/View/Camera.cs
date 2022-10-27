@@ -11,13 +11,13 @@ namespace Dungeon_Crawl.src.Core.View
         {
             var mapView = map.RenderMap();
 
-            var startHeight = Math.Max(0, centralPosition.Y - (_height - 1) / 2);
-            var endHeight = Math.Min(startHeight + _height - 1, map.Height - 1);
+            var startHeight = Math.Max(0, centralPosition.Y - (_height) / 2);
+            var endHeight = Math.Min(startHeight + _height, map.Height);
 
             Debug.Assert(startHeight < endHeight, "początkowa wysokość powinna być mniejsz od końcowej");
 
             var startWidth = Math.Max(0, centralPosition.X - (_width - 1) / 2);
-            var endWidth = Math.Min(startWidth + _width - 1, map.Width - 1);
+            var endWidth = Math.Min(startWidth + _width, map.Width);
 
             Debug.Assert(startWidth < endWidth);
 

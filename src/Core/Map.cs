@@ -1,4 +1,6 @@
-﻿namespace Dungeon_Crawl.src.Core;
+﻿using Dungeon_Crawl.src.Objects.DynamicObjects.Monsters;
+
+namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
     private readonly GameObject[,] _field;
@@ -19,39 +21,34 @@ internal class Map
             {
                 if (firstMap[i][j] == '#')
                 {
-                    _field[j, i] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(j, i));
                 }
                 else if (firstMap[i][j] == ' ')
                 {
-                    _field[j, i] = new Air(new Position(i, j));
+                    _field[j, i] = new Air(new Position(j, i));
                 }
-                //else if (firstMap[i][j] == 'I')
-                //{
-                //    _field[i, j] = new Item( new Position(i, j));
-                //}
+                else if (firstMap[i][j] == 'I')
+                {
+                    var items = new ItemList(new Position(j, i), this);
+                    _field[j, i] = items.RandomItem();
+                }
                 else if (firstMap[i][j] == 'K')
                 {
-                    _field[j, i] = new Key(new Position(i, j));
+                    _field[j, i] = new Key(new Position(j, i));
                 }
                 else if (firstMap[i][j] == 'N')
                 {
-                    _field[j, i] = new NPC(new Position(i, j));
+                    _field[j, i] = new NPC(new Position(j, i));
                 }
-                //else if (firstMap[i][j] == 'M')
-                //{
-                //    _field[i, j] = new Archer(new Position(i, j));
-                //}
+                else if (firstMap[i][j] == 'M')
+                {
+                    var monsters = new MonsterList(new Position(j, i));
+                    _field[j, i] = monsters.RandomMonster();
+                }
                 else
-                    _field[j, i] = new Wall(new Position(i, j));
+                    _field[j, i] = new Wall(new Position(j, i));
             }
         }
-        //for (int x = 0; x < Width; x++)
-        //{
-        //    for (int y = 0; y < Height; y++)
-        //    {
-        //        _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
-        //    }
-        //}
     }
     public List<string> RenderMap()
     {
@@ -106,5 +103,10 @@ internal class Map
 
         _field[pos1.X, pos1.Y] = newPosition;
         _field[pos2.X, pos2.Y] = oldPosition;
+    }
+
+    internal void DeleteAt(Position position)
+    {
+        _field[position.X, position.Y] = new Air(position);
     }
 }

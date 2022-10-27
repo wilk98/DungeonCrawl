@@ -13,13 +13,14 @@ internal class Archer : Monster
 
     protected override string Symbol { get => "A"; set => throw new NotImplementedException(); }
 
-    public override string Render()
-    {
-        return Symbol;
-    }
-
     public override void Update()
     {
+        return;
+    }
+
+    public override string Render()
+    {
+        return "";
     }
 }
 
