@@ -42,7 +42,8 @@ internal class Fight
                             break;
                         case "2":
                             HealPlayer(player);
-                            condition= true;
+                            Console.WriteLine("No implemented yet");
+                            condition= false;
                             break;
                         default:
                             Console.WriteLine("Valid choice. Choose 1 or 2");
@@ -64,7 +65,8 @@ internal class Fight
                             break;
                         case "2":
                             HealPlayer(player);
-                            condition = true;
+                            Console.WriteLine("No implemented yet");
+                            condition = false;
                             break;
                         default:
                             Console.WriteLine("Valid choice. Choose 1 or 2");
