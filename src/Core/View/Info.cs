@@ -1,4 +1,4 @@
-﻿namespace Dungeon_Crawl.src.Core
+﻿namespace Dungeon_Crawl.src.Core.View
 {
     internal class Info
     {
@@ -10,7 +10,7 @@
         private SelectedChoiceHandler _selectedChoiceHandler;
 
         public string Text { get; }
-        public string Choices 
+        public string Choices
         {
             get
             {

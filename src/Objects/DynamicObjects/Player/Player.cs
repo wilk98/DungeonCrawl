@@ -1,5 +1,5 @@
 ﻿using Dungeon_Crawl.src.Actions;
-using Dungeon_Crawl.src.Core;
+using Dungeon_Crawl.src.Core.View;
 using System.ComponentModel;
 
 namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;

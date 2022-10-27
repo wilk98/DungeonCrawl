@@ -1,4 +1,6 @@
-﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
+﻿using Dungeon_Crawl.src.Core.View;
+
+namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
     internal abstract class Controller<T> where T : GameObject
     {
