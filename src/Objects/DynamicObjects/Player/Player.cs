@@ -1,8 +1,4 @@
-﻿using Dungeon_Crawl.src.Actions;
-using Dungeon_Crawl.src.Core.View;
-using System.ComponentModel;
-
-namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
 internal class Player : DynamicObject
 {
