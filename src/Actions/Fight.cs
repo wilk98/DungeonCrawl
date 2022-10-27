@@ -32,8 +32,9 @@ internal class Fight
             {
                 bool condition = false;
                 while (!condition)
-                    {
-                string options = Console.ReadLine();
+                {
+                    Console.Write("\t\t\t\t");
+                    string options = Console.ReadLine();
                     switch (options)
                     {
                         case "1":
@@ -48,7 +49,7 @@ internal class Fight
                         default:
                             Console.WriteLine("Valid choice. Choose 1 or 2");
                             break;
-                     }
+                    }
                 }
             }
             else
@@ -56,7 +57,8 @@ internal class Fight
                 bool condition = false;
                 while(!condition)
                 {
-                string options = Console.ReadLine();
+                    Console.Write("\t\t\t\t");
+                    string options = Console.ReadLine();
                     switch (options)
                     {
                         case "1":

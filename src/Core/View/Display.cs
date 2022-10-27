@@ -62,11 +62,11 @@ internal class Display
     {
         if (x1 - x2 > 1)
         {
-            Console.WriteLine("\n1. Go forward\n2. Heal"); 
+            Console.WriteLine("\n\t\t\t\t1. Go forward\n\t\t\t\t2. Heal"); 
         }
         else if (x1 - x2 == 1)
         {
-            Console.WriteLine("\n1. Attack\n2. Heal\n");
+            Console.WriteLine("\n\t\t\t\t1. Attack\n\t\t\t\t2. Heal\n");
         }
     }
 }

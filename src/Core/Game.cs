@@ -77,13 +77,13 @@
                         string monsterString = _map.SearchMonster(oldPositionX,oldPositionY);
                         if (monsterString == "A")
                         {
-                            _monster = new Archer(new Position(4, 4));
+                            _monster = new Archer(new Position(38, 3));
                         }
                         else if (monsterString == "W")
                         {
-                            _monster = new Warrior(new Position(4, 4));
+                            _monster = new Warrior(new Position(38, 3));
                         }
-                        _player.Position = new Position(4, 8);
+                        _player.Position = new Position(38, 7);
                         bool win =_fight.FightRound(_player, _monster);
                         if (win)
                         {
