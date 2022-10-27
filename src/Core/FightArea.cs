@@ -11,27 +11,27 @@ namespace Dungeon_Crawl.src.Core;
 internal class FightArea
 {
     private readonly GameObject[,] _field;
-    private const int _width = 13;
-    private const int _height = 9;
+    private const int _width = 45;
+    private const int _height = 11;
 
     public int Width => _width;
 
     public int Height => _height;
     public FightArea()
     {
-        _field = new GameObject[Height, Width];
+        _field = new GameObject[Width, Height];
         var areaFight = ReadMap.ReadAreaFight();
-        for (int x = 0; x < Height; x++)
+        for (int x = 0; x < _height; x++)
         {
-            for (int y = 0; y < Width; y++)
+            for (int y = 0; y < _width; y++)
             {
                 if (areaFight[x][y]== '#')
                 {
-                    _field[x, y] = new Wall(new Position(x, y));
+                    _field[y, x] = new Wall(new Position(y, x));
                 }
                 else if (areaFight[x][y]== ' ')
                 {
-                    _field[x, y] = new Air(new Position(x, y));
+                    _field[y, x] = new Air(new Position(y, x));
                 }
             }
         }
@@ -41,10 +41,10 @@ internal class FightArea
         Update();
         Render();
         var map = new List<string>();
-        for (int y = 0; y < Width; y++)
+        for (int y = 0; y < Height; y++)
         {
-            var row = new string[Height];
-            for (int x = 0; x < Height; x++)
+            var row = new string[Width];
+            for (int x = 0; x < Width; x++)
             {
                 row[x] = At(new Position(x, y)).ToString();
             }
@@ -54,9 +54,9 @@ internal class FightArea
     }
     public GameObject At(Position position)
     {
-        if (position.Y < 0 || position.Y >= Width)
+        if (position.X < 0 || position.X >= Width)
             return new Wall(position);
-        if (position.X < 0 || position.X >= Height)
+        if (position.Y < 0 || position.Y >= Height)
             return new Wall(position);
         return _field[position.X, position.Y];
     }
