@@ -1,7 +1,4 @@
-﻿using Dungeon_Crawl.src.Core;
-
-
-namespace Dungeon_Crawl.src;
+﻿namespace Dungeon_Crawl.src;
 
 public class Program
 {
