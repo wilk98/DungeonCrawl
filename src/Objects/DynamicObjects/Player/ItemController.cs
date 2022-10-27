@@ -22,9 +22,9 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             }
         }
 
-        protected override Info GetInfo(Item foundedItem)
+        protected override AskDialog GetInfo(Item foundedItem)
         {
-            return new Info($"Pick {foundedItem.Name}?", new Tuple<string, string>("Yes", "No"), OnFound);
+            return new AskDialog($"Pick {foundedItem.Name}?", new Tuple<string, string>("Yes", "No"), OnFound);
         }
     }
 }

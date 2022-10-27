@@ -13,7 +13,7 @@ namespace Dungeon_Crawl.src.Core
         private readonly Movement _movement;
         private readonly SidebarDirector _sidebarDirector;
         private State _currentState;
-        private Info? _pendingInfo;
+        private AskDialog? _pendingInfo;
 
         public Game()
         {

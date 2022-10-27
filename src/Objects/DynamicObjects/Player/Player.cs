@@ -29,7 +29,7 @@ internal class Player : DynamicObject
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
-    public Info? Info { get; internal set; }
+    public AskDialog? Info { get; internal set; }
 
     public State ProcessInput(ConsoleKey key, State currentState)
     {
