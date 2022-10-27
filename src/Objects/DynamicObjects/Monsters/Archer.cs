@@ -6,7 +6,7 @@ internal class Archer : Monster
     {
     }
 
-    protected override string Symbol { get => "A"; set => throw new NotImplementedException(); }
+    protected override string Symbol => "A";
 
     public override void Update()
     {
