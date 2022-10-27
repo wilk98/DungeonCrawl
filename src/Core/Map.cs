@@ -46,13 +46,6 @@ internal class Map
                     _field[j, i] = new Wall(new Position(j, i));
             }
         }
-        //for (int x = 0; x < Width; x++)
-        //{
-        //    for (int y = 0; y < Height; y++)
-        //    {
-        //        _field[x, y] = y % 10 == 0 ? new Wall(new Position(x, y)) : new Air(new Position(x, y));
-        //    }
-        //}
     }
     public List<string> RenderMap()
     {
