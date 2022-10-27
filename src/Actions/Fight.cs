@@ -104,6 +104,7 @@ internal class Fight
             PlayerTurn(player, monster);
             MonsterTurn(player, monster);
         }
+        _fightArea.DeletePositions(player.Position);
     }
     public void PlayerAttack(Player player,Monster monster)
     {
