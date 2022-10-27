@@ -16,7 +16,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 
         protected override AskDialog GetInfo(NPC foundedItem)
         {
-            return new AskDialog(foundedItem.GetNextPhrase(), new Tuple<string, string>("ok", "ok"), OnFound);
+            return new InfoDialog(foundedItem.GetNextPhrase(), "Ok", OnFound);
         }
 
         protected override NPC? SearchItem()
