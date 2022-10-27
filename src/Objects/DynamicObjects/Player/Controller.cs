@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
 {
-    internal abstract class Controller<T>
+    internal abstract class Controller<T> where T : GameObject
     {
         protected readonly Map map;
         protected readonly Player player;
@@ -24,7 +24,31 @@
 
         internal abstract void OnFound(bool accepted);
         protected abstract Info GetInfo(T foundedItem);
-        protected abstract T? GetItem(Position position);
-        protected abstract T? SearchItem();
+
+        protected virtual T? SearchItem()
+        {
+            {
+                if (GetItem(new Position(player.Position.X, player.Position.Y + 1)) is T item) return item;
+            }
+            {
+                if (GetItem(new Position(player.Position.X, player.Position.Y - 1)) is T item) return item;
+            }
+            {
+                if (GetItem(new Position(player.Position.X + 1, player.Position.Y)) is T item) return item;
+            }
+            {
+                if (GetItem(new Position(player.Position.X - 1, player.Position.Y)) is T item) return item;
+            }
+            return null;
+        }
+
+        protected virtual T? GetItem(Position position)
+        {
+            if (map.At(position) is T)
+            {
+                return (T)map.At(position);
+            }
+            return null;
+        }
     }
 }

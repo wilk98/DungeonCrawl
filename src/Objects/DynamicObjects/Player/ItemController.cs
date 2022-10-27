@@ -7,33 +7,6 @@
 
         }
 
-        protected override Item? SearchItem()
-        {
-            {
-                if (GetItem(new Position(player.Position.X, player.Position.Y + 1)) is Item item) return item;
-            }
-            {
-                if (GetItem(new Position(player.Position.X, player.Position.Y - 1)) is Item item) return item;
-            }
-            {
-                if (GetItem(new Position(player.Position.X + 1, player.Position.Y)) is Item item) return item;
-            }
-            {
-                if (GetItem(new Position(player.Position.X - 1, player.Position.Y)) is Item item) return item;
-            }
-            return null;
-        }
-
-        protected override Item? GetItem(Position position)
-        {
-            if (map.At(position) is Item)
-            {
-                return (Item) map.At(position);
-            }
-            return null;
-        }
-
-
         internal override void OnFound(bool accepted)
         {
             if (accepted)
