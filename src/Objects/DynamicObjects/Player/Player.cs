@@ -1,14 +1,14 @@
-﻿using Dungeon_Crawl.src.Actions;
-using Dungeon_Crawl.src.Core;
-
-namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
 internal class Player : DynamicObject
 {
-    private KeyboardController _keyboardController = new();
-    private Movement movementController;
+    private readonly KeyboardController _keyboardController = new();
+    private readonly Movement movementController;
+    private readonly Map map;
+    private readonly ItemController itemController;
+    private readonly NPCdialog NPCdialog;
 
-    public Player(Position position, Movement movementController) : base(position)
+    public Player(Position position, Movement movementController, Map map) : base(position)
     {
         Stats = new Stats();
         Stats.HealthPoints = 100;
@@ -17,12 +17,15 @@ internal class Player : DynamicObject
 
         Inventory = new Inventory();
         this.movementController = movementController;
+        this.map = map;
+        itemController = new(map, this);
+        NPCdialog = new(map, this);
     }
 
     protected override string Symbol { get => "P"; set => throw new NotImplementedException(); }
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
-    public Info? Info { get; internal set; }
+    public AskDialog? Info { get; internal set; }
 
     public State ProcessInput(ConsoleKey key, State currentState)
     {
@@ -35,13 +38,12 @@ internal class Player : DynamicObject
                     case ConsoleKey.S:
                     case ConsoleKey.A:
                     case ConsoleKey.D:
+                        if (itemController.PickItem() is State.Info) return State.Info;
+                        if (NPCdialog.PickItem() is State.Info) return State.Info;
                         MakeMove(key, movementController);
                         return State.Game;
                     case ConsoleKey.I:
                         return State.Inventory;
-                    case ConsoleKey.F:
-                        Info = new Info("Test info!", new Tuple<string, string>("Yes", "No"));
-                        return State.Info;
                     default:
                         return State.Game;
                 }
@@ -102,14 +104,5 @@ internal class Player : DynamicObject
 
     }
 
-    public void Move()
-    {
-        throw new NotImplementedException();
-    }
-
-    internal void HandleInfo(bool accepted)
-    {
-        throw new NotImplementedException();
-    }
 }
 

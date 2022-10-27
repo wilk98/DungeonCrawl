@@ -18,13 +18,14 @@ namespace Dungeon_Crawl.src.Core
         private State _currentState;
         private Info? _pendingInfo;
         private Monster _monster;
+        private AskDialog? _pendingInfo;
 
         public Game()
         {
             _fight = new Fight();
             _currentState = State.Game;
             _map = new Map();
-            _player = new Player(new Position(77, 34), new Movement(_map));
+            _player = new Player(new Position(77, 34), new Movement(_map), _map);
             _map.AddObject(_player.Position, _player);
             _movement = new Movement(_map);
             _camera = new Camera();

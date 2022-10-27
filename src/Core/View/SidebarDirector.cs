@@ -29,7 +29,7 @@ namespace Dungeon_Crawl.src.Core.View
             }
             return _sidebar.CreateFrame(height);
         }
-        public List<string> MakeInfoBox(Info info, int height = 5)
+        public List<string> MakeInfoBox(AskDialog info, int height = 5)
         {
             _sidebar.AddCenteredText(info.Text);
             _sidebar.AddEmptyLine();

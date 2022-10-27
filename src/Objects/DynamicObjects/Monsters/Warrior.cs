@@ -13,13 +13,14 @@ internal class Warrior : Monster
 
     protected override string Symbol { get => "W"; set => throw new NotImplementedException(); }
 
-    public override string Render()
-    {
-        return Symbol;
-    }
-
     public override void Update()
     {
+        return;
+    }
+
+    public override string Render()
+    {
+        return "";
     }
 }
 
