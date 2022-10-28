@@ -6,8 +6,9 @@ internal class NPC : StaticObject
     public NPC(Position position) : base(position)
     {
         dialog.Add("Hello stranger!");
-        dialog.Add("Middle");
-        dialog.Add("Bye!");
+        dialog.Add("It's too dangerous outside");
+        dialog.Add("Be careful");
+        dialog.Add("Good luck.");
     }
 
     public bool Finished { get; private set; }
