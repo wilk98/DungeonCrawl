@@ -32,11 +32,11 @@ internal class Map
                 }
                 else if (firstMap[i][j] == 'r')
                 {
-                    _field[j, i] = new Key(new Position(j, i), "red");
+                    _field[j, i] = new Key(new Position(j, i), "Red", this);
                 }
                 else if (firstMap[i][j] == 'g')
                 {
-                    _field[j, i] = new Key(new Position(j, i), "green");
+                    _field[j, i] = new Key(new Position(j, i), "Green", this);
                 }
                 else if (firstMap[i][j] == 'N')
                 {
