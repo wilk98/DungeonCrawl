@@ -3,10 +3,13 @@
 namespace Dungeon_Crawl.src.Objects.StaticObjects;
 internal class Key : StaticObject, IPickable
 {
-    public Key(Position position) : base(position)
+    public string Color { get; }
+    public Key(Position position, string color) : base(position)
     {
+        Color = color;
     }
 
+    public override bool IsPassable => true;
     protected override string Symbol => "K";
     public bool IsPickable { get; }
     public bool PickUp(Player player)

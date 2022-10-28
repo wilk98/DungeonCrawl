@@ -4,7 +4,7 @@
     {
         public virtual bool IsPassable { get; } = false;
 
-        protected abstract string Symbol { get;}
+        protected abstract string Symbol { get; }
         public Position Position { get; set; }
 
         protected GameObject(Position position)
