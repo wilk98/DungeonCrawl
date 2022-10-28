@@ -30,9 +30,13 @@ internal class Map
                     var items = new ItemList(new Position(j, i), this);
                     _field[j, i] = items.RandomItem();
                 }
-                else if (firstMap[i][j] == 'K')
+                else if (firstMap[i][j] == 'r')
                 {
-                    _field[j, i] = new Key(new Position(j, i));
+                    _field[j, i] = new Key(new Position(j, i), "red");
+                }
+                else if (firstMap[i][j] == 'g')
+                {
+                    _field[j, i] = new Key(new Position(j, i), "green");
                 }
                 else if (firstMap[i][j] == 'N')
                 {
