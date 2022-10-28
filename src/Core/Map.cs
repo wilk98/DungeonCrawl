@@ -38,6 +38,14 @@ internal class Map
                 {
                     _field[j, i] = new Key(new Position(j, i), "Green", this);
                 }
+                else if (firstMap[i][j] == 'R')
+                {
+                    _field[j, i] = new Door(new Position(j, i), "Red");
+                }
+                else if (firstMap[i][j] == 'G')
+                {
+                    _field[j, i] = new Door(new Position(j, i), "Green");
+                }
                 else if (firstMap[i][j] == 'N')
                 {
                     _field[j, i] = new NPC(new Position(j, i));
