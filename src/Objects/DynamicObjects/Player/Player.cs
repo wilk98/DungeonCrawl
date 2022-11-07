@@ -10,16 +10,16 @@ internal class Player : DynamicObject
     private readonly MonsterDialog monsterDialog;
     private readonly DoorController doorController;
 
+
     public Player(Position position, Movement movementController, Map map) : base(position)
     {
         Stats = new Stats
         {
-            Level = 1,
             HealthPoints = 100,
             Strength = 15,
             Defense = 5
         };
-
+        Level = new LevelUp();
         Inventory = new Inventory();
         this.movementController = movementController;
         this.map = map;
@@ -32,6 +32,7 @@ internal class Player : DynamicObject
     protected override string Symbol => "P";
     public Inventory Inventory { get; internal set; }
     public Stats Stats { get; internal set; }
+    public LevelUp Level { get; }
     public AskDialog? Info { get; internal set; }
 
     public State ProcessInput(ConsoleKey key, State currentState)

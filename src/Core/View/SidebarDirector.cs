@@ -4,10 +4,10 @@
     {
         private readonly Sidebar _sidebar = new();
 
-        public List<string> MakeInfobar(Stats stats, Inventory inventory, int height)
+        public List<string> MakeInfobar(Stats stats, Inventory inventory, int height, LevelUp level)
         {
             _sidebar.AddCenteredText("Stats");
-            _sidebar.AddLeftAlignedText($" Level: {stats.Level}");
+            _sidebar.AddLeftAlignedText($" Level: {level.level}");
             _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
             _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");

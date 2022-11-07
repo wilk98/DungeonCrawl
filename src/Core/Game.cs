@@ -64,7 +64,7 @@
                 case State.Inventory:
                     {
                         var view = _camera.GetView(_player.Position, _map);
-                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count(), _player.Level);
                         _display.DisplayView(view, inventoryView);
                     }
                     break;
@@ -107,7 +107,7 @@
                             throw new Exception("Info should not be null");
                         }
                         var view = _camera.GetView(_player.Position, _map);
-                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count());
+                        var inventoryView = _sidebarDirector.MakeInfobar(_player.Stats, _player.Inventory, view.Count(), _player.Level);
                         var infoBox = _sidebarDirector.MakeInfoBox(_pendingInfo);
                         _display.DisplayInfo(view, inventoryView, infoBox);
                     }

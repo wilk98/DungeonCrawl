@@ -4,9 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
+namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+
+internal class LevelUp
 {
-    internal class LevelUp
+    public Player player;
+    public int level;
+    public int experience;
+    public int experienceRequired;
+
+    public LevelUp()
     {
+        level = 1;
+        experience = 0;
+        experienceRequired = 100;
+    }
+
+    public void Update()
+    {
+        Experience();
+    }
+
+    public void IncreaseLevel()
+    {
+        level += 1;
+        experience = 0;
+        player.Stats.Defense += 2;
+        player.Stats.Strength += 2;
+        player.Stats.HealthPoints += 10;
+        experienceRequired += 100;
+    }
+    public void Experience()
+    {
+        if (experience >= experienceRequired)
+            IncreaseLevel();
     }
 }

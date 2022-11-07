@@ -20,7 +20,7 @@
         public bool PickUp(Player player)
         {
             player.Inventory.AddItem(this);
-            player.Stats.UpdateStats(Stats.Level, Stats.HealthPoints, Stats.Strength, Stats.Defense);
+            player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
             _map.DeleteAt(Position);
             return true;
         }
