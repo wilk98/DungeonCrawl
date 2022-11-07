@@ -61,10 +61,10 @@ internal class Player : DynamicObject
                 switch (key)
                 {
                     case ConsoleKey.W:
-                        Inventory.PreviousSelected();
+                        Inventory.SelectPrevious();
                         return State.Inventory;
                     case ConsoleKey.S:
-                        Inventory.NextSelected();
+                        Inventory.SelectNext();
                         return State.Inventory;
                     default:
                         return State.Game;

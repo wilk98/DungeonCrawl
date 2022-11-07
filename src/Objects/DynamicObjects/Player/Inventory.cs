@@ -6,9 +6,9 @@ internal class Inventory
     { };
     private int _selectedItem = 0;
 
-    public void NextSelected() => _selectedItem = Math.Min(_selectedItem + 1, _items.Count - 1);
-    public void PreviousSelected() => _selectedItem = Math.Max(0, _selectedItem - 1);
-    public Item SelectedItem() => _items[_selectedItem];
+    public void SelectNext() => _selectedItem = Math.Min(_selectedItem + 1, _items.Count - 1);
+    public void SelectPrevious() => _selectedItem = Math.Max(0, _selectedItem - 1);
+    public Item SelectedItem => _items.ElementAt(_selectedItem);
     public void AddItem(Item item)
     {
         _items.Add(item);
