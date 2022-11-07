@@ -66,6 +66,9 @@ internal class Player : DynamicObject
                     case ConsoleKey.S:
                         Inventory.SelectNext();
                         return State.Inventory;
+                    case ConsoleKey.Enter:
+                        Inventory.UseItem();
+                        return State.Inventory;
                     default:
                         return State.Game;
                 }
