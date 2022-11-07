@@ -36,6 +36,7 @@ internal class Inventory
     public void UseItem()
     {
         SelectedItem.Use(_player);
+        _selectedItem = Math.Max(_selectedItem - 1, 0);
     }
 }
 
