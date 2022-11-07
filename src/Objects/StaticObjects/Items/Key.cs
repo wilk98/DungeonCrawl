@@ -12,5 +12,11 @@ internal class Key : Item, IPickable
     public override bool IsPassable => true;
     protected override string Symbol => "K";
     public override string Name { get => Color + " key"; }
+
+    public override State Use(Player player)
+    {
+        player.Info = new InfoDialog($"This key opens {Color} door", "Ok", handler: null);
+        return State.Info;
+    }
 }
 
