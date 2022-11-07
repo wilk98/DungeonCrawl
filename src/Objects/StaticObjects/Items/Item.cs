@@ -4,7 +4,7 @@
     {
         private readonly Map _map;
         public Stats Stats { get; internal set; }
-        public virtual string Name { get; internal set; }
+        public abstract string Name { get; }
 
         public override bool IsPassable => true;
         public Item(Position position, Map map) : base(position)
@@ -20,9 +20,14 @@
         public bool PickUp(Player player)
         {
             player.Inventory.AddItem(this);
-            player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
             _map.DeleteAt(Position);
             return true;
+        }
+
+        public virtual void Use(Player player)
+        {
+            player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
+            player.Inventory.RemoveItem(this);
         }
 
         public override void Update()

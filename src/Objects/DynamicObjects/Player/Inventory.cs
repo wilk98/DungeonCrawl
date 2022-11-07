@@ -2,8 +2,15 @@
 
 internal class Inventory
 {
-    private List<Item> _items = new()
-    { };
+
+    private readonly Player _player;
+
+    public Inventory(Player player)
+    {
+        _player = player;
+    }
+
+    private List<Item> _items = new();
     private int _selectedItem = 0;
 
     public void SelectNext() => _selectedItem = Math.Min(_selectedItem + 1, _items.Count - 1);
@@ -25,6 +32,10 @@ internal class Inventory
     public List<Item> GetItems()
     {
         return _items;
+    }
+    public void UseItem()
+    {
+        SelectedItem.Use(_player);
     }
 }
 

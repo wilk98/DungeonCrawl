@@ -19,7 +19,7 @@ internal class Player : DynamicObject
             Defense = 5
         };
 
-        Inventory = new Inventory();
+        Inventory = new Inventory(this);
         this.movementController = movementController;
         this.map = map;
         itemController = new(map, this);
