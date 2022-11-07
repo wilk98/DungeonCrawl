@@ -20,6 +20,7 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             {
                 IgnoreItemSearching = 2;
             }
+            player.Info = null;
         }
 
         protected override AskDialog GetInfo(Item foundedItem)

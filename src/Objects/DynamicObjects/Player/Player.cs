@@ -38,6 +38,10 @@ internal class Player : DynamicObject
         switch (currentState)
         {
             case State.Game:
+                if (Info is not null)
+                {
+                    return State.Info;
+                }
                 switch (key)
                 {
                     case ConsoleKey.W:
@@ -67,8 +71,7 @@ internal class Player : DynamicObject
                         Inventory.SelectNext();
                         return State.Inventory;
                     case ConsoleKey.Enter:
-                        Inventory.UseItem();
-                        return State.Inventory;
+                        return Inventory.UseItem();
                     default:
                         return State.Game;
                 }
@@ -85,8 +88,10 @@ internal class Player : DynamicObject
                         return State.Info;
                     case ConsoleKey.Enter:
                         Info.Select();
+                        Info = null;
                         return State.Game;
                     default:
+                        Info = null;
                         return State.Game;
                 }
             case State.Fight:
