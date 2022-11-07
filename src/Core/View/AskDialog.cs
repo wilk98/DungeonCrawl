@@ -7,7 +7,7 @@ internal class AskDialog
     private const int _width = 50;
     protected readonly Tuple<string, string> choices;
     protected int _selectedChoice = 0;
-    private SelectedChoiceHandler _selectedChoiceHandler;
+    private SelectedChoiceHandler? _selectedChoiceHandler;
 
     public string Text { get; }
     public virtual string Choices
@@ -34,10 +34,10 @@ internal class AskDialog
     {
         Resolved = true;
         Accepted = _selectedChoice == 0;
-        _selectedChoiceHandler(Accepted);
+        _selectedChoiceHandler?.Invoke(Accepted);
     }
 
-    public AskDialog(string text, Tuple<string, string> choices, SelectedChoiceHandler handler)
+    public AskDialog(string text, Tuple<string, string> choices, SelectedChoiceHandler? handler)
     {
         Text = text;
         this.choices = choices;
