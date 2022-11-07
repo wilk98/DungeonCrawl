@@ -3,7 +3,6 @@
 internal class Archer : Monster
 {
     public override Stats Stats { get; internal set; }
-    public override experienceToGain = 20;
     public Archer(Position position) : base(position)
     {
         Stats = new Stats();
@@ -11,6 +10,7 @@ internal class Archer : Monster
         Stats.Strength = 10;
         Stats.Defense = 2;
     }
+    internal override int experienceToGain => 20;
 
     protected override string Symbol => "A";
 

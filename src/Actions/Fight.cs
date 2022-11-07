@@ -6,6 +6,7 @@ namespace Dungeon_Crawl.src.Actions;
 
 internal class Fight
 {
+    private LevelUp _levelUp;
     private readonly Camera _camera;
     private readonly SidebarDirector _sidebarDirector;
     private readonly Display _display;
@@ -16,6 +17,7 @@ internal class Fight
 
     public Fight()
     {
+        _levelUp = new LevelUp();
         _fightArea = new FightArea();
         _camera = new Camera();
         _display = new Display();
@@ -110,8 +112,11 @@ internal class Fight
         }
         _fightArea.DeletePositions(player.Position);
         if (player.Stats.HealthPoints > 0)
-            player.Level.experience += monster.
+        {
+            player.Level.experience += monster.experienceToGain;
+            player.Level.Update(player);
             return true;
+        }
         else
             return false;
         

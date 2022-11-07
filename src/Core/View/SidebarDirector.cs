@@ -8,6 +8,7 @@
         {
             _sidebar.AddCenteredText("Stats");
             _sidebar.AddLeftAlignedText($" Level: {level.level}");
+            _sidebar.AddLeftAlignedText($" Experience: {level.experience}");
             _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
             _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
