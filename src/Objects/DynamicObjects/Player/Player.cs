@@ -14,6 +14,7 @@ internal class Player : DynamicObject
     {
         Stats = new Stats
         {
+            Level = 1,
             HealthPoints = 100,
             Strength = 15,
             Defense = 5

@@ -2,6 +2,7 @@
 
 internal class Stats
 {
+    internal int Level { get; set; }
     internal int HealthPoints { get; set; }
     internal int Strength { get; set; }
     internal int Defense { get; set; }
