@@ -24,10 +24,11 @@
             return true;
         }
 
-        public virtual void Use(Player player)
+        public virtual State Use(Player player)
         {
             player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
             player.Inventory.RemoveItem(this);
+            return State.Game;
         }
 
         public override void Update()

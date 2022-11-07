@@ -33,10 +33,11 @@ internal class Inventory
     {
         return _items;
     }
-    public void UseItem()
+    public State UseItem()
     {
-        SelectedItem.Use(_player);
+        var newState = SelectedItem.Use(_player);
         _selectedItem = Math.Max(_selectedItem - 1, 0);
+        return newState;
     }
 }
 
