@@ -8,26 +8,28 @@ internal class Inventory
     public Inventory(Player player)
     {
         _player = player;
+        _equipment = new(this, _player);
     }
 
-    private List<Item> _items = new();
+    private readonly List<Item> _items = new();
     private int _selectedItem = 0;
+    private readonly Equipment _equipment;
 
     public void SelectNext() => _selectedItem = Math.Min(_selectedItem + 1, _items.Count - 1);
     public void SelectPrevious() => _selectedItem = Math.Max(0, _selectedItem - 1);
     public Item SelectedItem => _items.ElementAt(_selectedItem);
-    public void AddItem(Item item)
+
+    internal Equipment Equipment => _equipment;
+
+    public void AddItem(Item? item)
     {
-        _items.Add(item);
+        if(item is not null)
+            _items.Add(item);
     }
 
     public void RemoveItem(Item item)
     {
         _items.Remove(item);
-    }
-    public void DropItem(Item item)
-    {
-
     }
     public List<Item> GetItems()
     {

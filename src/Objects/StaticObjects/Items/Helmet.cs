@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items;
-internal class Helmet : Item
+internal class Helmet : Armor
 {
     public Helmet(Position position, Map map) : base(position, map)
     {
@@ -8,5 +8,6 @@ internal class Helmet : Item
         //Stats.HealthPoints = 0;
     }
     public override string Name => "Helmet";
-  
+
+    public override EquipmentType equipmentType => EquipmentType.Helmet;
 }

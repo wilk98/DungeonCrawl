@@ -8,7 +8,6 @@ internal class ItemList
         Items = new List<Item>()
         {
             new Sword(position, map),
-            new Armor(position, map),
             new Shield(position, map),
             new Helmet(position, map),
             new Greaves(position, map),
