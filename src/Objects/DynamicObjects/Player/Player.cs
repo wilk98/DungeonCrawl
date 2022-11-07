@@ -19,7 +19,7 @@ internal class Player : DynamicObject
             Defense = 5
         };
 
-        Inventory = new Inventory();
+        Inventory = new Inventory(this);
         this.movementController = movementController;
         this.map = map;
         itemController = new(map, this);
@@ -38,6 +38,10 @@ internal class Player : DynamicObject
         switch (currentState)
         {
             case State.Game:
+                if (Info is not null)
+                {
+                    return State.Info;
+                }
                 switch (key)
                 {
                     case ConsoleKey.W:
@@ -61,11 +65,13 @@ internal class Player : DynamicObject
                 switch (key)
                 {
                     case ConsoleKey.W:
-                        Inventory.PreviousSelected();
+                        Inventory.SelectPrevious();
                         return State.Inventory;
                     case ConsoleKey.S:
-                        Inventory.NextSelected();
+                        Inventory.SelectNext();
                         return State.Inventory;
+                    case ConsoleKey.Enter:
+                        return Inventory.UseItem();
                     default:
                         return State.Game;
                 }
@@ -82,8 +88,10 @@ internal class Player : DynamicObject
                         return State.Info;
                     case ConsoleKey.Enter:
                         Info.Select();
+                        Info = null;
                         return State.Game;
                     default:
+                        Info = null;
                         return State.Game;
                 }
             case State.Fight:

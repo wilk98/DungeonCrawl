@@ -8,7 +8,7 @@ namespace Dungeon_Crawl.src.Core.View
 {
     internal class InfoDialog : AskDialog
     {
-        public InfoDialog(string text, string choice, SelectedChoiceHandler handler) : base(text, new Tuple<string, string>(choice, choice), handler)
+        public InfoDialog(string text, string choice, SelectedChoiceHandler? handler) : base(text, new Tuple<string, string>(choice, choice), handler)
         {
         }
 
