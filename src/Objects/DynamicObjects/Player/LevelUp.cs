@@ -8,7 +8,6 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
 internal class LevelUp
 {
-    public Player player;
     public int level;
     public int experience;
     public int experienceRequired;
@@ -20,12 +19,7 @@ internal class LevelUp
         experienceRequired = 100;
     }
 
-    public void Update()
-    {
-        Experience();
-    }
-
-    public void IncreaseLevel()
+    public void IncreaseLevel(Player player)
     {
         level += 1;
         experience = 0;
@@ -34,9 +28,12 @@ internal class LevelUp
         player.Stats.HealthPoints += 10;
         experienceRequired += 100;
     }
-    public void Experience()
+    public void Update(Player player)
     {
         if (experience >= experienceRequired)
-            IncreaseLevel();
+            IncreaseLevel(player);
+        Console.WriteLine(experience);
+        Console.WriteLine(experienceRequired);
+        Console.WriteLine("Dupa");
     }
 }

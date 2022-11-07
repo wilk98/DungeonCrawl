@@ -4,8 +4,8 @@ internal abstract class Monster : DynamicObject
     private List<string> dialog = new();
     private int currentPhrase = -1;
     public virtual Stats Stats { get; internal set; }
-    public int experienceToGain;
     public bool Finished { get; private set; }
+    internal abstract int experienceToGain { get; }
     protected Monster(Position position) : base(position)
     {
         dialog.Add("Fight");
