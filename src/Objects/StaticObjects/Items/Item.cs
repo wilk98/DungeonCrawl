@@ -24,12 +24,8 @@
             return true;
         }
 
-        public virtual State Use(Player player)
-        {
-            player.Stats.UpdateStats(Stats.HealthPoints, Stats.Strength, Stats.Defense);
-            player.Inventory.RemoveItem(this);
-            return State.Game;
-        }
+        public abstract State Use(Player player);
+        
 
         public override void Update()
         {
