@@ -110,6 +110,7 @@ internal class Fight
         }
         _fightArea.DeletePositions(player.Position);
         if (player.Stats.HealthPoints > 0)
+            player.Level.experience += monster.
             return true;
         else
             return false;

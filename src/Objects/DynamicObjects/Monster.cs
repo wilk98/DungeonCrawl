@@ -4,6 +4,7 @@ internal abstract class Monster : DynamicObject
     private List<string> dialog = new();
     private int currentPhrase = -1;
     public virtual Stats Stats { get; internal set; }
+    public int experienceToGain;
     public bool Finished { get; private set; }
     protected Monster(Position position) : base(position)
     {
