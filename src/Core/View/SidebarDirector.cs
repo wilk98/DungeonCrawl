@@ -14,7 +14,7 @@
             _sidebar.AddCenteredText("Inventory");
             foreach (var item in inventory.GetItems())
             {
-                if (item == inventory.SelectedItem())
+                if (item == inventory.SelectedItem)
                     _sidebar.AddLeftAlignedText($" > {item.Name}");
                 else
                     _sidebar.AddLeftAlignedText($" {item.Name}");
