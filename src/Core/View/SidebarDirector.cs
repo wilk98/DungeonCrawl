@@ -7,6 +7,7 @@
         public List<string> MakeInfobar(Stats stats, Inventory inventory, int height)
         {
             _sidebar.AddCenteredText("Stats");
+            _sidebar.AddLeftAlignedText($" Level: {stats.Level}");
             _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
             _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
