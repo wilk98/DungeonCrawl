@@ -32,8 +32,5 @@ internal class LevelUp
     {
         if (experience >= experienceRequired)
             IncreaseLevel(player);
-        Console.WriteLine(experience);
-        Console.WriteLine(experienceRequired);
-        Console.WriteLine("Dupa");
     }
 }

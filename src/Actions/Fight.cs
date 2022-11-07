@@ -6,18 +6,14 @@ namespace Dungeon_Crawl.src.Actions;
 
 internal class Fight
 {
-    private LevelUp _levelUp;
     private readonly Camera _camera;
     private readonly SidebarDirector _sidebarDirector;
     private readonly Display _display;
     private FightArea _fightArea;
-    private Player _player;
-    private Monster _monster;
     public Position Position { get; set; }
 
     public Fight()
     {
-        _levelUp = new LevelUp();
         _fightArea = new FightArea();
         _camera = new Camera();
         _display = new Display();
