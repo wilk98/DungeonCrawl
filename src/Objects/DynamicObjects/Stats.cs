@@ -7,8 +7,9 @@ internal class Stats
     internal int Strength { get; set; }
     internal int Defense { get; set; }
 
-    public void UpdateStats(int healthPoints, int strength, int defense)
+    public void UpdateStats(int level ,int healthPoints, int strength, int defense)
     {
+        Level += level;
         HealthPoints += healthPoints;
         Strength += strength;
         Defense += defense;
