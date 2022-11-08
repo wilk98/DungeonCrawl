@@ -21,6 +21,16 @@ internal class Player : DynamicObject
         };
         Level = new LevelUp();
         Inventory = new Inventory(this);
+        Inventory.AddItem(new Key(position, "1", map));
+        Inventory.AddItem(new Key(position, "2", map));
+        Inventory.AddItem(new Key(position, "3", map));
+        Inventory.AddItem(new Key(position, "4", map));
+        Inventory.AddItem(new Key(position, "5", map));
+        Inventory.AddItem(new Key(position, "6", map));
+        Inventory.AddItem(new Key(position, "7", map));
+        Inventory.AddItem(new Key(position, "8", map));
+        Inventory.AddItem(new Key(position, "9", map));
+        Inventory.AddItem(new Key(position, "10", map));
         this.movementController = movementController;
         this.map = map;
         itemController = new(map, this);

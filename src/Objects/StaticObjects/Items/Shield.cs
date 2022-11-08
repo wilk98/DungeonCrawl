@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items;
-internal class Shield : Item
+internal class Shield : Armor
 {
     public Shield(Position position, Map map) : base(position, map)
     {
@@ -9,4 +9,5 @@ internal class Shield : Item
     }
     public override string Name => "Shield";
 
+    public override EquipmentType equipmentType => EquipmentType.Weapon;
 }

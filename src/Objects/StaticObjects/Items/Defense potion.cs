@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items;
-internal class DefensePotion : Item
+internal class DefensePotion : Consumable
 {
     public DefensePotion(Position position, Map map) : base(position, map)
     {
