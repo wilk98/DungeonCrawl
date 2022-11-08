@@ -10,6 +10,8 @@ internal class Archer : Monster
         Stats.Strength = 10;
         Stats.Defense = 2;
     }
+    internal override int experienceToGain => 20;
+    public override int maxMonsterHP => 45;
 
     protected override string Symbol => "A";
 
