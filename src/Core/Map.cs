@@ -12,7 +12,7 @@ internal class Map
     public Map()
     {
         _field = new GameObject[Width, Height];
-        var firstMap = ReadMap.ReadFirstMapFile();
+        var firstMap = ReadMap.ReadFirstFloor();
         for (int i = 0; i < _height; i++)
         {
             for (int j = 0; j < _width; j++)
