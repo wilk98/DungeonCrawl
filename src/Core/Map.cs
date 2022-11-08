@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Core;
-internal class Map
+public class Map
 {
     private readonly GameObject[,] _field;
     private const int _width = 151;

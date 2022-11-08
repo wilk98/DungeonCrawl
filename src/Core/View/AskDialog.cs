@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Core.View;
 
-internal class AskDialog
+public class AskDialog
 {
     public delegate void SelectedChoiceHandler(bool accepted);
 

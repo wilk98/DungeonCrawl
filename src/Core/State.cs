@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Core
 {
-    internal enum State
+    public enum State
     {
         Game,
         Pause,

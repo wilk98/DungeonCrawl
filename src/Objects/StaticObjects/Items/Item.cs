@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items
 {
-    internal abstract class Item : StaticObject, IPickable
+    public abstract class Item : StaticObject, IPickable
     {
         private readonly Map _map;
         public Stats Stats { get; internal set; }
