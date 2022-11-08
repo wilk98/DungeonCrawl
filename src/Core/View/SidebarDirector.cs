@@ -88,11 +88,11 @@
         }
         public List<string> MakeInfobarFight(Stats stats, Stats monsterStats, int height, LevelUp level, int maxMonsterHp)
         {
+            _sidebar.AddCenteredText("Monster stats");
             GenerateHp(monsterStats, maxMonsterHp);
             GenerateStatsView(monsterStats);
             _sidebar.AddHorizontalRule();
             GeneratePlayerStats(stats, level);
-            _sidebar.AddHorizontalRule();
             return _sidebar.CreateFrame(height);
         }
     }
