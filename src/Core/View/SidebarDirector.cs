@@ -6,11 +6,15 @@
 
         public List<string> MakeInfobar(Stats stats, Inventory inventory, int height)
         {
-            _sidebar.AddCenteredText("Stats");
-            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
-            _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
-            _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
+            GenerateStatsView(stats, "Stats");
             _sidebar.AddHorizontalRule();
+            GenerateInventoryView(inventory);
+
+            return _sidebar.CreateFrame(height);
+        }
+
+        private void GenerateInventoryView(Inventory inventory)
+        {
             _sidebar.AddCenteredText("Inventory");
             foreach (var item in inventory.GetItems())
             {
@@ -19,8 +23,18 @@
                 else
                     _sidebar.AddLeftAlignedText($" {item.Name}");
             }
-            return _sidebar.CreateFrame(height);
         }
+
+        private void GenerateStatsView(Stats stats, string centeredText)
+        {
+            _sidebar.AddCenteredText(centeredText);
+            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
+            _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
+            _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
+        }
+
+        }
+
         public List<string> MakeInfoBox(AskDialog info, int height = 5)
         {
             _sidebar.AddCenteredText(info.Text);
@@ -30,15 +44,9 @@
         }
         public List<string> MakeInfobarFight(Stats stats, Stats monsterStats, int height)
         {
-            _sidebar.AddCenteredText("Monster Stats");
-            _sidebar.AddLeftAlignedText($" Health: {monsterStats.HealthPoints}");
-            _sidebar.AddLeftAlignedText($" Strength: {monsterStats.Strength}");
-            _sidebar.AddLeftAlignedText($" Defense: {monsterStats.Defense}");
+            GenerateStatsView(monsterStats, "Monster Stats");
             _sidebar.AddHorizontalRule();
-            _sidebar.AddCenteredText(" Stats");
-            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
-            _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
-            _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
+            GenerateStatsView(stats, "Stats");
             _sidebar.AddHorizontalRule();
             return _sidebar.CreateFrame(height);
         }
