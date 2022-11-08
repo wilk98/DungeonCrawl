@@ -10,7 +10,8 @@ internal class Warrior : Monster
         Stats.Strength = 12;
         Stats.Defense = 3;
     }
-
+    internal override int experienceToGain => 30;
+    public override int maxMonsterHP => 60;
     protected override string Symbol => "W";
 
     public override void Update()
