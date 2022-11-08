@@ -33,15 +33,17 @@
             _sidebar.AddCenteredText(info.Choices);
             return _sidebar.CreateFrame(height);
         }
-        public List<string> MakeInfobarFight(Stats stats, Stats monsterStats, int height)
+        public List<string> MakeInfobarFight(Stats stats, Stats monsterStats, int height, LevelUp level, int maxMonsterHp)
         {
             _sidebar.AddCenteredText("Monster Stats");
             _sidebar.AddLeftAlignedText($" Health: {monsterStats.HealthPoints}");
+            _sidebar.AddLeftAlignedText(_progressBar.DrawBar(monsterStats.HealthPoints, maxMonsterHp));
             _sidebar.AddLeftAlignedText($" Strength: {monsterStats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {monsterStats.Defense}");
             _sidebar.AddHorizontalRule();
             _sidebar.AddCenteredText(" Stats");
             _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
+            _sidebar.AddLeftAlignedText(_progressBar.DrawBar(stats.HealthPoints, level.maxHealtPoints));
             _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
             _sidebar.AddHorizontalRule();

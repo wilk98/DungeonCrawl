@@ -82,7 +82,7 @@ internal class Fight
         Console.Clear();
         var view = _camera.GetView(_fightArea);
         var monsterInfo = _sidebarDirector;
-        var inventoryView = _sidebarDirector.MakeInfobarFight(player.Stats, monster.Stats, view.Count());
+        var inventoryView = _sidebarDirector.MakeInfobarFight(player.Stats, monster.Stats, view.Count(), player.Level, monster.maxMonsterHP);
         _display.DisplayView(view, inventoryView);
         _display.DisplayOptionsFight(player.Position.Y, monster.Position.Y);
     }
