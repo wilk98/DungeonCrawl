@@ -71,11 +71,11 @@
         private void GenerateEquipmentView(Equipment equipment)
         {
             _sidebar.AddCenteredText("Equipment");
-            _sidebar.AddLeftAlignedText($" Helmet: {(equipment.Helmet is null ? "Nothing" : equipment.Helmet.Name)}");
-            _sidebar.AddLeftAlignedText($" Cuirass: {(equipment.Cuirass is null ? "Nothing" : equipment.Cuirass.Name)}");
-            _sidebar.AddLeftAlignedText($" Gloves: {(equipment.Gloves is null ? "Nothing" : equipment.Gloves.Name)}");
-            _sidebar.AddLeftAlignedText($" Greaves: {(equipment.Greaves is null ? "Nothing" : equipment.Greaves.Name)}");
-            _sidebar.AddLeftAlignedText($" Boots: {(equipment.Boots is null ? "Nothing" : equipment.Boots.Name)}");
+            _sidebar.AddLeftAlignedText($" Head: {(equipment.Helmet is null ? "Nothing" : equipment.Helmet.Name)}");
+            _sidebar.AddLeftAlignedText($" Body: {(equipment.Cuirass is null ? "Nothing" : equipment.Cuirass.Name)}");
+            _sidebar.AddLeftAlignedText($" Hands: {(equipment.Gloves is null ? "Nothing" : equipment.Gloves.Name)}");
+            _sidebar.AddLeftAlignedText($" Legs: {(equipment.Greaves is null ? "Nothing" : equipment.Greaves.Name)}");
+            _sidebar.AddLeftAlignedText($" Foots: {(equipment.Boots is null ? "Nothing" : equipment.Boots.Name)}");
             _sidebar.AddLeftAlignedText($" Weapon: {(equipment.Weapon is null ? "Nothing" : equipment.Weapon.Name)}");
         }
 
