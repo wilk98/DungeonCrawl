@@ -3,11 +3,16 @@
     internal class SidebarDirector
     {
         private readonly Sidebar _sidebar = new();
+        private readonly ProgressBar _progressBar = new();
 
-        public List<string> MakeInfobar(Stats stats, Inventory inventory, int height)
+        public List<string> MakeInfobar(Stats stats, Inventory inventory, int height, LevelUp level)
         {
             _sidebar.AddCenteredText("Stats");
-            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}");
+            _sidebar.AddLeftAlignedText($" Level: {level.level}");;
+            _sidebar.AddLeftAlignedText($" Experience: {level.experience}/{level.experienceRequired}");
+            _sidebar.AddLeftAlignedText(_progressBar.DrawBar(level.experience,level.experienceRequired));
+            _sidebar.AddLeftAlignedText($" Health: {stats.HealthPoints}/{level.maxHealtPoints}");
+            _sidebar.AddLeftAlignedText(_progressBar.DrawBar(stats.HealthPoints, level.maxHealtPoints));
             _sidebar.AddLeftAlignedText($" Strength: {stats.Strength}");
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
             _sidebar.AddHorizontalRule();
