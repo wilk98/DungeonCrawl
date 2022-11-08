@@ -2,9 +2,9 @@
 
 public class Stats
 {
-    internal int HealthPoints { get; set; }
-    internal int Strength { get; set; }
-    internal int Defense { get; set; }
+    public int HealthPoints { get; set; }
+    public int Strength { get; set; }
+    public int Defense { get; set; }
 
     public void UpdateStats(int healthPoints, int strength, int defense)
     {

@@ -1,5 +1,13 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items
 {
+    public enum Rarity
+    {
+        Normal,
+        Common,
+        Rare,
+        Unique,
+        Legendary
+    }
     public abstract class Item : StaticObject, IPickable
     {
         private readonly Map _map;
