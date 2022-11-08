@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items;
-internal abstract class Armor : Item
+public abstract class Armor : Item
 {
     public Armor(Position position, Map map) : base(position, map)
     {

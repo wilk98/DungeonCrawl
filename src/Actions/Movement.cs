@@ -2,7 +2,7 @@
 
 namespace Dungeon_Crawl.src.Actions
 {
-    internal class Movement
+    public class Movement
     {
         private Map _map;
         private FightArea _area;

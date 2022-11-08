@@ -8,7 +8,7 @@ using Dungeon_Crawl.src.Objects.StaticObjects;
 
 namespace Dungeon_Crawl.src.Core;
 
-internal class FightArea
+public class FightArea
 {
     private readonly GameObject[,] _field;
     private const int _width = 45;

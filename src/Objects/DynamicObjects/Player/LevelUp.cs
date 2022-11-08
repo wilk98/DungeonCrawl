@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
-internal class LevelUp
+public class LevelUp
 {
     public int maxHealtPoints;
     public int level;

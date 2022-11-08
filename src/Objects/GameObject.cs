@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects
 {
-    internal abstract class GameObject
+    public abstract class GameObject
     {
         public virtual bool IsPassable { get; } = false;
 

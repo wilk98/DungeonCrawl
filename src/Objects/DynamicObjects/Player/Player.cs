@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
-internal class Player : DynamicObject
+public class Player : DynamicObject
 {
     private readonly KeyboardController _keyboardController = new();
     private readonly Movement movementController;

@@ -1,6 +1,6 @@
 ﻿namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player;
 
-internal class Inventory
+public class Inventory
 {
 
     private readonly Player _player;
