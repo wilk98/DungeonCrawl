@@ -1,5 +1,5 @@
 ﻿namespace Dungeon_Crawl.src.Maps;
-internal class ReadMap
+static class ReadMap
 {
 
     public static string[] ReadFirstMapFile()
