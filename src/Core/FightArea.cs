@@ -12,7 +12,7 @@ internal class FightArea
 {
     private readonly GameObject[,] _field;
     private const int _width = 45;
-    private const int _height = 11;
+    private const int _height = 13;
 
     public int Width => _width;
 

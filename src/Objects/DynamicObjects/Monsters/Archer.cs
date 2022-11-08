@@ -6,7 +6,7 @@ internal class Archer : Monster
     public Archer(Position position) : base(position)
     {
         Stats = new Stats();
-        Stats.HealthPoints = 45;
+        Stats.HealthPoints = maxMonsterHP;
         Stats.Strength = 10;
         Stats.Defense = 2;
     }
