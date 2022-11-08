@@ -9,12 +9,21 @@ internal class Display
 {
     internal void DisplayView(List<string> view, List<string> sidebar)
     {
-        var mapHeight = view.Count();
+        var mapHeight = Math.Max(view.Count, sidebar.Count);
         var mapWidth = view[0].Length;
 
         for (int i = 0; i < mapHeight; i++)
         {
-            Console.WriteLine($"{view[i]} {sidebar[i].PadLeft(Console.WindowWidth - mapWidth - 1)}");
+            var mapView = string.Empty;
+            if (i >= view.Count)
+            {
+                mapView = new string(' ', mapWidth);
+            }
+            else
+            {
+                mapView = view[i];
+            }
+            Console.WriteLine($"{mapView} {sidebar[i].PadLeft(Console.WindowWidth - mapWidth - 1)}");
         }
     }
     internal void DisplayInfo(List<string> view, List<string> sidebar, List<string> info)
