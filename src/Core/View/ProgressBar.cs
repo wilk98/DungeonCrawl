@@ -14,6 +14,8 @@ namespace Dungeon_Crawl.src.Core.View
         {
             int maxBlockQuantity = 28;
             int currentBlockQuantity = maxBlockQuantity * currentValue / maxValue;
+            if (currentBlockQuantity < 0)
+                currentBlockQuantity = 0;
             return currentBlockQuantity;
         }
 

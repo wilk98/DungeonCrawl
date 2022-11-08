@@ -6,6 +6,7 @@ internal abstract class Monster : DynamicObject
     public virtual Stats Stats { get; internal set; }
     public bool Finished { get; private set; }
     internal abstract int experienceToGain { get; }
+    public virtual int maxMonsterHP { get; }
     protected Monster(Position position) : base(position)
     {
         dialog.Add("Fight");
