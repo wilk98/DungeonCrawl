@@ -6,15 +6,11 @@ public abstract class Armor : Item
     public Armor(Position position, Map map, Rarity rarity) : base(position, map)
     {
         _rarity = rarity;
-
-        Stats.HealthPoints = (int) Math.Round(GetRarityMultiplier() * Stats.HealthPoints);
-        Stats.Strength = (int) Math.Round(GetRarityMultiplier() * Stats.Strength);
-        Stats.Defense = (int) Math.Round(GetRarityMultiplier() * Stats.Defense);
     }
 
 
     public override string Name => $"{_rarity} ";
-    private float GetRarityMultiplier()
+    protected virtual float GetRarityMultiplier()
     {
         return _rarity switch
         {
@@ -25,6 +21,12 @@ public abstract class Armor : Item
             Rarity.Legendary => 3.0f,
             _ => throw new NotImplementedException(),
         };
+    }
+    protected virtual void ApplyRarityMultiplierToStats()
+    {
+        Stats.HealthPoints = (int) Math.Round(GetRarityMultiplier() * Stats.HealthPoints);
+        Stats.Strength = (int) Math.Round(GetRarityMultiplier() * Stats.Strength);
+        Stats.Defense = (int) Math.Round(GetRarityMultiplier() * Stats.Defense);
     }
     public abstract EquipmentType equipmentType { get; }
     public override State Use(Player player)
