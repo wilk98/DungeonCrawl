@@ -10,6 +10,8 @@ internal class Boss : Monster
 
     protected override string Symbol => "B";
 
+    internal override int experienceToGain => 100;
+
     public override string Render()
     {
         throw new NotImplementedException();

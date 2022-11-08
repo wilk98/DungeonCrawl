@@ -10,8 +10,6 @@ internal class Fight
     private readonly SidebarDirector _sidebarDirector;
     private readonly Display _display;
     private FightArea _fightArea;
-    private Player _player;
-    private Monster _monster;
     public Position Position { get; set; }
 
     public Fight()
@@ -110,7 +108,11 @@ internal class Fight
         }
         _fightArea.DeletePositions(player.Position);
         if (player.Stats.HealthPoints > 0)
+        {
+            player.Level.experience += monster.experienceToGain;
+            player.Level.Update(player);
             return true;
+        }
         else
             return false;
         
