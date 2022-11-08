@@ -1,13 +1,12 @@
 ﻿namespace Dungeon_Crawl.src.Objects.StaticObjects.Items;
-internal class Helmet : Armor
+public class Helmet : Armor
 {
-    public Helmet(Position position, Map map) : base(position, map)
+    public Helmet(Position position, Map map, Rarity rarity = Rarity.Common) : base(position, map, rarity)
     {
-        //Stats.Strength = 0;
         Stats.Defense = 2;
-        //Stats.HealthPoints = 0;
+        ApplyRarityMultiplierToStats();
     }
-    public override string Name => "Helmet";
+    public override string Name => base.Name + "Helmet";
 
     public override EquipmentType equipmentType => EquipmentType.Helmet;
 }
