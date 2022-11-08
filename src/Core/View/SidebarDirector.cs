@@ -20,12 +20,20 @@
         {
             _sidebar.AddCenteredText("Inventory");
             var inventoryItems = inventory.GetItems();
-            for (var i = 0; i < 9; i++)
+            var showFromIndex = Math.Max(inventory.SelectedItemIndex - 4, 0);
+            for (var i = showFromIndex; i < showFromIndex + 9; i++)
             {
                 if (i < inventoryItems.Count)
                 {
                     var item = inventoryItems[i];
-                    _sidebar.AddLeftAlignedText($" {item.Name}");
+                    if (i == inventory.SelectedItemIndex)
+                    {
+                        _sidebar.AddLeftAlignedText($"> {item.Name}");
+                    }
+                    else
+                    {
+                        _sidebar.AddLeftAlignedText($" {item.Name}");
+                    }
                 }
                 else
                 {
