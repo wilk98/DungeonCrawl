@@ -30,8 +30,8 @@ internal class ItemList
         var randomNumber = Random.Next(0, 11);
         return randomNumber switch
         {
-            6 => Rarity.Common,
-            7 => Rarity.Rare,
+            >= 3 and <= 4 => Rarity.Common,
+            > 4 and <= 7  => Rarity.Rare,
             8 => Rarity.Unique,
             9 => Rarity.Legendary,
             _ => Rarity.Normal,
