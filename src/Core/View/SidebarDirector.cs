@@ -9,7 +9,10 @@
             GenerateStatsView(stats, "Stats");
             _sidebar.AddHorizontalRule();
             GenerateInventoryView(inventory);
+            _sidebar.AddHorizontalRule();
 
+            var equipment = inventory.Equipment;
+            GenerateEquipmentView(equipment);
             return _sidebar.CreateFrame(height);
         }
 
@@ -33,6 +36,15 @@
             _sidebar.AddLeftAlignedText($" Defense: {stats.Defense}");
         }
 
+        private void GenerateEquipmentView(Equipment equipment)
+        {
+            _sidebar.AddCenteredText("Equipment");
+            _sidebar.AddLeftAlignedText($" Helmet: {(equipment.Helmet is null ? "Nothing" : equipment.Helmet.Name)}");
+            _sidebar.AddLeftAlignedText($" Cuirass: {(equipment.Cuirass is null ? "Nothing" : equipment.Cuirass.Name)}");
+            _sidebar.AddLeftAlignedText($" Gloves: {(equipment.Gloves is null ? "Nothing" : equipment.Gloves.Name)}");
+            _sidebar.AddLeftAlignedText($" Greaves: {(equipment.Greaves is null ? "Nothing" : equipment.Greaves.Name)}");
+            _sidebar.AddLeftAlignedText($" Boots: {(equipment.Boots is null ? "Nothing" : equipment.Boots.Name)}");
+            _sidebar.AddLeftAlignedText($" Weapon: {(equipment.Weapon is null ? "Nothing" : equipment.Weapon.Name)}");
         }
 
         public List<string> MakeInfoBox(AskDialog info, int height = 5)
