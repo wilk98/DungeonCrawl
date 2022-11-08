@@ -19,12 +19,18 @@
         private void GenerateInventoryView(Inventory inventory)
         {
             _sidebar.AddCenteredText("Inventory");
-            foreach (var item in inventory.GetItems())
+            var inventoryItems = inventory.GetItems();
+            for (var i = 0; i < 9; i++)
             {
-                if (item == inventory.SelectedItem)
-                    _sidebar.AddLeftAlignedText($" > {item.Name}");
-                else
+                if (i < inventoryItems.Count)
+                {
+                    var item = inventoryItems[i];
                     _sidebar.AddLeftAlignedText($" {item.Name}");
+                }
+                else
+                {
+                    _sidebar.AddCenteredText("");
+                }
             }
         }
 
