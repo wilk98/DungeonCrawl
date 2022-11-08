@@ -9,4 +9,13 @@ internal class HealthPotion : Consumable
     }
     public override string Name => "Health Potion";
 
+    public override State Use(Player player)
+    {
+        if (player.Stats.HealthPoints + Stats.HealthPoints > player.Level.maxHealtPoints)
+        {
+            return State.Game;
+        }
+
+        return base.Use(player);
+    }
 }
