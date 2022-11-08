@@ -37,10 +37,12 @@ namespace Dungeon_Crawl.src.Core.View
         }
         public void AddCenteredText(string text)
         {
+            text = text[0..Math.Min(text.Length, _sidebarWidth - 2)];
             _frame.Add(new StringBuilder().Append("|").Append(' ', _sidebarWidth / 2 - 1 - (int)Math.Ceiling(text.Length / 2f)).Append(text).Append(' ', _sidebarWidth / 2 - 1 - (int)Math.Floor(text.Length / 2f)).Append("|").ToString());
         }
         public void AddLeftAlignedText(string text)
         {
+            text = text[0..Math.Min(text.Length, _sidebarWidth - 2)];
             _frame.Add(new StringBuilder().Append("|").Append(text.PadRight(_sidebarWidth - 2)).Append("|").ToString());
         }
         public void AddEmptyLine()
