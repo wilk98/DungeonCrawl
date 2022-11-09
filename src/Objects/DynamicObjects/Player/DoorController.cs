@@ -26,9 +26,17 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
                 latestFound = null;
                 return new InfoDialog("You can't open this door", "Ok", EmptyDialog);       
             }
-            return new AskDialog("Opened! Start next level?", new Tuple<string, string>("Yes", "No"), EndGame);        
+            return new AskDialog("Opened! Start next level?", new Tuple<string, string>("Yes", "No"), NextFloor);        
         }
 
+
+        private void NextFloor(bool accepted)
+        {
+            if (accepted)
+            {
+                map.CurrentFloor = 1;
+            }
+        }
         private void EndGame(bool accepted)
         {
             if (accepted)
