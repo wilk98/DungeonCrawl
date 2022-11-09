@@ -10,8 +10,10 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
     {
         Door? latestFound;
         bool DoorIsOpened = false;
+        private Player player;
         public DoorController(Map map, Player player) : base(map, player)
         {
+            this.player = player;
         }
 
         protected override AskDialog GetInfo(Door foundedItem)
@@ -29,14 +31,46 @@ namespace Dungeon_Crawl.src.Objects.DynamicObjects.Player
             return new AskDialog("Opened! Start next level?", new Tuple<string, string>("Yes", "No"), NextFloor);        
         }
 
-
         private void NextFloor(bool accepted)
         {
             if (accepted)
             {
-                map.CurrentFloor = 1;
+                if (latestFound.Color == "Red")
+                {
+                    if (map.CurrentFloor == 0)
+                    {
+                        map.CurrentFloor += 1;
+                        NewMethod(148, 2);
+                    }
+                    else
+                    {
+                        map.CurrentFloor -= 1;
+                        NewMethod(148, 2);
+                    }
+                }
+                else
+                {
+                    if (map.CurrentFloor == 0)
+                    {
+                        map.CurrentFloor -= 1;
+                        NewMethod(3, 65);
+                    }
+                    else
+                    {
+                        map.CurrentFloor += 1;
+                        NewMethod(3, 65);
+                    }
+                }
             }
         }
+
+        private void NewMethod(int X, int Y)
+        {
+            map.RenderFloor();
+            var playerPositionInFloor2 = player.Position = (new Position(X, Y));
+            map.AddObject(playerPositionInFloor2, player);
+        }
+
         private void EndGame(bool accepted)
         {
             if (accepted)
