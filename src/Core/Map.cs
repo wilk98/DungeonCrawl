@@ -1,18 +1,88 @@
 ﻿namespace Dungeon_Crawl.src.Core;
 internal class Map
 {
-    private readonly GameObject[,] _field;
+    private GameObject[,] _field;
     private const int _width = 151;
     private const int _height = 67;
+    private int currentFloor = 0;
 
+    public int CurrentFloor
+    {
+        get => currentFloor;
+        set => currentFloor = value;
+    }
     public int Width => _width;
 
     public int Height => _height;
 
     public Map()
     {
+        if (currentFloor == 0)
+        {
+            FirstMap();
+        }
+        else
+        {
+            SecondMap();
+        }
+    }
+
+    private void FirstMap()
+    {
         _field = new GameObject[Width, Height];
         var firstMap = ReadMap.ReadFirstFloor();
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (firstMap[i][j] == '#')
+                {
+                    _field[j, i] = new Wall(new Position(j, i));
+                }
+                else if (firstMap[i][j] == ' ')
+                {
+                    _field[j, i] = new Air(new Position(j, i));
+                }
+                else if (firstMap[i][j] == 'I')
+                {
+                    var items = new ItemList(new Position(j, i), this);
+                    _field[j, i] = items.RandomItem();
+                }
+                else if (firstMap[i][j] == 'r')
+                {
+                    _field[j, i] = new Key(new Position(j, i), "Red", this);
+                }
+                else if (firstMap[i][j] == 'g')
+                {
+                    _field[j, i] = new Key(new Position(j, i), "Green", this);
+                }
+                else if (firstMap[i][j] == 'R')
+                {
+                    _field[j, i] = new Door(new Position(j, i), "Red");
+                    currentFloor += 1;
+                }
+                else if (firstMap[i][j] == 'G')
+                {
+                    _field[j, i] = new Door(new Position(j, i), "Green");
+                }
+                else if (firstMap[i][j] == 'N')
+                {
+                    _field[j, i] = new NPC(new Position(j, i));
+                }
+                else if (firstMap[i][j] == 'M')
+                {
+                    var monsters = new MonsterList(new Position(j, i));
+                    _field[j, i] = monsters.RandomMonster();
+                }
+                else
+                    _field[j, i] = new Wall(new Position(j, i));
+            }
+        }
+    }
+    private void SecondMap()
+    {
+        _field = new GameObject[Width, Height];
+        var firstMap = ReadMap.ReadSecondFloor();
         for (int i = 0; i < _height; i++)
         {
             for (int j = 0; j < _width; j++)
@@ -60,6 +130,7 @@ internal class Map
             }
         }
     }
+
     public List<string> RenderMap()
     {
         Update();
