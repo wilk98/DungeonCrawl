@@ -67,11 +67,15 @@ internal class Display
             Console.WriteLine($"{viewWithInfo[i]} {sidebar[i].PadLeft(Console.WindowWidth - mapWidth - 1)}");
         }
     }
-    internal void DisplayOptionsFight(int x1, int x2)
+    internal void DisplayOptionsFight(int x1, int x2, int level, int counter)
     {
         if (x1 - x2 > 1)
         {
-            Console.WriteLine("\n\t\t\t\t1. Go forward\n\t\t\t\t2. Heal"); 
+            Console.WriteLine("\n\t\t\t\t1. Go forward\n\t\t\t\t2. Heal");
+        }
+        else if ((x1 - x2 == 1) && (level > 1) && (counter > 1))
+        {
+            Console.WriteLine("\n\t\t\t\t1. Attack\n\t\t\t\t2. Heal\n\t\t\t\t3. Critical attack\n");
         }
         else if (x1 - x2 == 1)
         {
