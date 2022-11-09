@@ -20,18 +20,18 @@ namespace Dungeon_Crawl.src.Manager
             _connectionString = connectionString;
         }
 
-        private static string SerializeToXml(object value)
+        private static string SerializeToXml<T>(T value)
         {
             StringWriter writer = new StringWriter(CultureInfo.InvariantCulture);
-            XmlSerializer serializer = new XmlSerializer(value.GetType());
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
             serializer.Serialize(writer, value);
             return writer.ToString();
         }
 
         public void Add(Player player)
         {
-            const string insertCommand = @"INSERT INTO characters (player)
-                        VALUES (@serialized_player)
+            const string insertCommand = @"INSERT INTO player (stats, position, level, items)
+                        VALUES (@stats, @position, @level, @items)
                         SELECT SCOPE_IDENTITY();";
 
             try
@@ -41,15 +41,18 @@ namespace Dungeon_Crawl.src.Manager
                     var cmd = new SqlCommand(insertCommand, connection);
                     if (connection.State == ConnectionState.Closed)
                         connection.Open();
-                    cmd.Parameters.AddWithValue("@serialized_player", SerializeToXml(player));
-
-                    Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@stats", SerializeToXml(player.Stats));
+                    cmd.Parameters.AddWithValue("@position", SerializeToXml(player.Position));
+                    cmd.Parameters.AddWithValue("@level", SerializeToXml(player.Level));
+                    cmd.Parameters.AddWithValue("@items", SerializeToXml(player.Inventory.GetItems()));
+                    
+                    cmd.BeginExecuteNonQuery();
                     connection.Close();
                 }
             }
             catch (SqlException e)
             {
-                throw new RuntimeWrappedException(e);
+                throw e;
             }
         }
 
