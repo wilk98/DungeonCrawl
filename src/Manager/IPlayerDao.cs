@@ -4,8 +4,9 @@
     {
 
         public void Add(Player player);
-        public Player Get(int id);
+        public Player Get(Map map);
+        string SerializeToXml<T>(T value);
         public void Update(Player player);
-        
+        T XmlDeserializeFromString<T>(string objectData);
     }
 }

@@ -31,8 +31,8 @@ public class Player : DynamicObject
 
     protected override string Symbol => "P";
     public Inventory Inventory { get; internal set; }
-    public Stats Stats { get; internal set; }
-    public LevelUp Level { get; }
+    public Stats Stats { get; set; }
+    public LevelUp Level { get; set; }
     public AskDialog? Info { get; internal set; }
 
     public State ProcessInput(ConsoleKey key, State currentState)
