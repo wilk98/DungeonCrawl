@@ -1,11 +1,15 @@
 ﻿using Dungeon_Crawl.src.Core;
 using Dungeon_Crawl.src.Core.View;
+using Dungeon_Crawl.src.Objects.DynamicObjects;
 using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
+using System.Diagnostics.Metrics;
+using System.Numerics;
 
 namespace Dungeon_Crawl.src.Actions;
 
 internal class Fight
 {
+    private int counter = 0;
     private readonly Camera _camera;
     private readonly SidebarDirector _sidebarDirector;
     private readonly Display _display;
@@ -42,7 +46,7 @@ internal class Fight
                         case "2":
                             HealPlayer(player);
                             Console.WriteLine("\t\t\t\tNo implemented yet");
-                            condition= false;
+                            condition = false;
                             break;
                         default:
                             Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
@@ -52,26 +56,57 @@ internal class Fight
             }
             else
             {
-                bool condition = false;
-                while(!condition)
+                if ((player.Level.level > 1) && (counter > 1))
                 {
-                    Console.Write("\t\t\t\t");
-                    string options = Console.ReadLine();
-                    switch (options)
+                    bool condition = false;
+                    while (!condition)
                     {
-                        case "1":
-                            PlayerAttack(player, monster);
-                            condition = true;
-                            break;
-                        case "2":
-                            HealPlayer(player);
-                            Console.WriteLine("\t\t\t\tNo implemented yet");
-                            condition = false;
-                            break;
-                        default:
-                            Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
-                            break;
-                     }
+                        Console.Write("\t\t\t\t");
+                        string options = Console.ReadLine();
+                        switch (options)
+                        {
+                            case "1":
+                                PlayerAttack(player, monster);
+                                condition = true;
+                                break;
+                            case "2":
+                                HealPlayer(player);
+                                Console.WriteLine("\t\t\t\tNo implemented yet");
+                                condition = false;
+                                break;
+                            case "3":
+                                PlayerAttackCritical(player, monster);
+                                condition = true;
+                                break;
+                            default:
+                                Console.WriteLine("\t\t\t\tValid choice. Choose 1, 2 or 3");
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    bool condition = false;
+                    while (!condition)
+                    {
+                        Console.Write("\t\t\t\t");
+                        string options = Console.ReadLine();
+                        switch (options)
+                        {
+                            case "1":
+                                PlayerAttack(player, monster);
+                                condition = true;
+                                break;
+                            case "2":
+                                HealPlayer(player);
+                                Console.WriteLine("\t\t\t\tNo implemented yet");
+                                condition = false;
+                                break;
+                            default:
+                                Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -84,12 +119,12 @@ internal class Fight
         var monsterInfo = _sidebarDirector;
         var inventoryView = _sidebarDirector.MakeInfobarFight(player.Stats, monster.Stats, view.Count(), player.Level, monster.maxMonsterHP);
         _display.DisplayView(view, inventoryView);
-        _display.DisplayOptionsFight(player.Position.Y, monster.Position.Y);
+        _display.DisplayOptionsFight(player.Position.Y, monster.Position.Y, player.Level.level, counter);
     }
 
     public void ChangePosition(Player player)
     {
-        int a= player.Position.Y - 1;
+        int a = player.Position.Y - 1;
         var oldPlayerPosition = new Position(player.Position.X, player.Position.Y);
         var newPlayerPosition = new Position(player.Position.X, a);
         player.Position = newPlayerPosition;
@@ -105,6 +140,7 @@ internal class Fight
         {
             PlayerTurn(player, monster);
             MonsterTurn(player, monster);
+            counter += 1;
         }
         _fightArea.DeletePositions(player.Position);
         if (player.Stats.HealthPoints > 0)
@@ -115,14 +151,22 @@ internal class Fight
         }
         else
             return false;
-        
+
     }
-    public void PlayerAttack(Player player,Monster monster)
+    public void PlayerAttack(Player player, Monster monster)
     {
         int attackPlayer = player.Stats.Strength;
         int defenceMonster = monster.Stats.Defense;
-        monster.Stats.HealthPoints = monster.Stats.HealthPoints - ((3*attackPlayer - 2*defenceMonster)/2);
+        monster.Stats.HealthPoints = monster.Stats.HealthPoints - (attackPlayer - defenceMonster);
 
+    }
+    public void PlayerAttackCritical(Player player, Monster monster)
+    {
+        int attackPlayer = player.Stats.Strength;
+        int defenceMonster = monster.Stats.Defense;
+        int attackMultiplier = 2;
+        monster.Stats.HealthPoints = monster.Stats.HealthPoints - (attackMultiplier * attackPlayer - defenceMonster);
+        counter = 0;
     }
     public void MonsterTurn(Player player, Monster monster)
     {
@@ -131,7 +175,7 @@ internal class Fight
         {
             int attackMonster = monster.Stats.Strength;
             int defencePlayer = player.Stats.Defense;
-            if (attackMonster < defencePlayer)
+            if (attackMonster <= defencePlayer)
             {
                 player.Stats.HealthPoints -= 1;
             }
@@ -146,7 +190,7 @@ internal class Fight
             {
                 int attackMonster = monster.Stats.Strength;
                 int defencePlayer = player.Stats.Defense;
-                if (attackMonster < defencePlayer)
+                if (attackMonster <= defencePlayer)
                 {
                     player.Stats.HealthPoints -= 1;
                 }
