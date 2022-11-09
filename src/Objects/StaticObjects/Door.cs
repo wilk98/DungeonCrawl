@@ -2,7 +2,7 @@
 {
     internal class Door : StaticObject
     {
-        private string Color { get; }
+        public string Color { get; }
         public string Name { get => Color + " door"; }
         public Door(Position position, string color) : base(position)
         {
