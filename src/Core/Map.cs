@@ -4,7 +4,7 @@ internal class Map
     private GameObject[,] _field;
     private const int _width = 151;
     private const int _height = 67;
-    private int currentFloor = 0;
+    private int currentFloor;
 
     public int CurrentFloor
     {
@@ -17,13 +17,22 @@ internal class Map
 
     public Map()
     {
-        if (currentFloor == 0)
+        RenderFloor();
+    }
+
+    public void RenderFloor()
+    {
+        switch (currentFloor)
         {
-            FirstMap();
-        }
-        else
-        {
-            SecondMap();
+            case 0:
+                FirstMap();
+                break;
+            case -1:
+                BossMap();
+                break;
+            default:
+                SecondMap();
+                break;
         }
     }
 
@@ -59,7 +68,6 @@ internal class Map
                 else if (firstMap[i][j] == 'R')
                 {
                     _field[j, i] = new Door(new Position(j, i), "Red");
-                    currentFloor += 1;
                 }
                 else if (firstMap[i][j] == 'G')
                 {
@@ -100,25 +108,9 @@ internal class Map
                     var items = new ItemList(new Position(j, i), this);
                     _field[j, i] = items.RandomItem();
                 }
-                else if (firstMap[i][j] == 'r')
-                {
-                    _field[j, i] = new Key(new Position(j, i), "Red", this);
-                }
-                else if (firstMap[i][j] == 'g')
-                {
-                    _field[j, i] = new Key(new Position(j, i), "Green", this);
-                }
-                else if (firstMap[i][j] == 'R')
-                {
-                    _field[j, i] = new Door(new Position(j, i), "Red");
-                }
                 else if (firstMap[i][j] == 'G')
                 {
                     _field[j, i] = new Door(new Position(j, i), "Green");
-                }
-                else if (firstMap[i][j] == 'N')
-                {
-                    _field[j, i] = new NPC(new Position(j, i));
                 }
                 else if (firstMap[i][j] == 'M')
                 {
@@ -130,7 +122,41 @@ internal class Map
             }
         }
     }
-
+    private void BossMap()
+    {
+        _field = new GameObject[Width, Height];
+        var firstMap = ReadMap.ReadBossFloor();
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                if (firstMap[i][j] == '#')
+                {
+                    _field[j, i] = new Wall(new Position(j, i));
+                }
+                else if (firstMap[i][j] == ' ')
+                {
+                    _field[j, i] = new Air(new Position(j, i));
+                }
+                else if (firstMap[i][j] == 'I')
+                {
+                    var items = new ItemList(new Position(j, i), this);
+                    _field[j, i] = items.RandomItem();
+                }
+                else if (firstMap[i][j] == 'R')
+                {
+                    _field[j, i] = new Door(new Position(j, i), "Red");
+                }
+                else if (firstMap[i][j] == 'M')
+                {
+                    var monsters = new MonsterList(new Position(j, i));
+                    _field[j, i] = monsters.RandomMonster();
+                }
+                else
+                    _field[j, i] = new Wall(new Position(j, i));
+            }
+        }
+    }
     public List<string> RenderMap()
     {
         Update();
