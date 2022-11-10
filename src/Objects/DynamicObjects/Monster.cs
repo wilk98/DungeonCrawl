@@ -9,7 +9,7 @@ internal abstract class Monster : DynamicObject
     public virtual int maxMonsterHP { get; }
     protected Monster(Position position) : base(position)
     {
-        dialog.Add("Fight");
+        dialog.Add("You win!");
     }
     public string GetNextPhrase()
     {
