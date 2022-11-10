@@ -31,83 +31,92 @@ internal class Fight
         {
             UpdateAreaFight(player, monster);
             if (player.Position.Y - monster.Position.Y > 1)
-            {
-                bool condition = false;
-                while (!condition)
-                {
-                    Console.Write("\t\t\t\t");
-                    string options = Console.ReadLine();
-                    switch (options)
-                    {
-                        case "1":
-                            ChangePosition(player);
-                            condition = true;
-                            break;
-                        case "2":
-                            HealPlayer(player);
-                            Console.WriteLine("\t\t\t\tNo implemented yet");
-                            condition = false;
-                            break;
-                        default:
-                            Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
-                            break;
-                    }
-                }
-            }
+                GoToMonster(player);
             else
             {
                 if ((player.Level.level > 1) && (counter > 1))
-                {
-                    bool condition = false;
-                    while (!condition)
-                    {
-                        Console.Write("\t\t\t\t");
-                        string options = Console.ReadLine();
-                        switch (options)
-                        {
-                            case "1":
-                                PlayerAttack(player, monster);
-                                condition = true;
-                                break;
-                            case "2":
-                                HealPlayer(player);
-                                Console.WriteLine("\t\t\t\tNo implemented yet");
-                                condition = false;
-                                break;
-                            case "3":
-                                PlayerAttackCritical(player, monster);
-                                condition = true;
-                                break;
-                            default:
-                                Console.WriteLine("\t\t\t\tValid choice. Choose 1, 2 or 3");
-                                break;
-                        }
-                    }
-                }
+                    FightWithLevelOverOne(player, monster);
                 else
-                {
-                    bool condition = false;
-                    while (!condition)
-                    {
-                        Console.Write("\t\t\t\t");
-                        string options = Console.ReadLine();
-                        switch (options)
-                        {
-                            case "1":
-                                PlayerAttack(player, monster);
-                                condition = true;
-                                break;
-                            case "2":
-                                HealPlayer(player);
-                                Console.WriteLine("\t\t\t\tNo implemented yet");
-                                condition = false;
-                                break;
-                            default:
-                                Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
-                                break;
-                        }
-                    }
-                }
+                    FightWithLevelOne(player, monster);
+            }
+        }
+    }
+
+    private void FightWithLevelOne(Player player, Monster monster)
+    {
+        bool condition = false;
+        while (!condition)
+        {
+            Console.Write("\t\t\t\t");
+            string options = Console.ReadLine();
+            switch (options)
+            {
+                case "1":
+                    PlayerAttack(player, monster);
+                    condition = true;
+                    break;
+                case "2":
+                    HealPlayer(player);
+                    Console.WriteLine("\t\t\t\tNo implemented yet");
+                    condition = false;
+                    break;
+                default:
+                    Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
+                    break;
+            }
+        }
+    }
+
+    private void FightWithLevelOverOne(Player player, Monster monster)
+    {
+        bool condition = false;
+        while (!condition)
+        {
+            Console.Write("\t\t\t\t");
+            string options = Console.ReadLine();
+            switch (options)
+            {
+                case "1":
+                    PlayerAttack(player, monster);
+                    condition = true;
+                    break;
+                case "2":
+                    HealPlayer(player);
+                    Console.WriteLine("\t\t\t\tNo implemented yet");
+                    condition = false;
+                    break;
+                case "3":
+                    PlayerAttackCritical(player, monster);
+                    condition = true;
+                    break;
+                default:
+                    Console.WriteLine("\t\t\t\tValid choice. Choose 1, 2 or 3");
+                    break;
+            }
+        }
+    }
+
+    private void GoToMonster(Player player)
+    {
+        bool condition = false;
+        while (!condition)
+        {
+            Console.Write("\t\t\t\t");
+            string options = Console.ReadLine();
+            switch (options)
+            {
+                case "1":
+                    ChangePosition(player);
+                    condition = true;
+                    break;
+                case "2":
+                    HealPlayer(player);
+                    Console.WriteLine("\t\t\t\tNo implemented yet");
+                    condition = false;
+                    break;
+                default:
+                    Console.WriteLine("\t\t\t\tValid choice. Choose 1 or 2");
+                    break;
             }
         }
     }
