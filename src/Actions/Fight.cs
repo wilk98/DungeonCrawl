@@ -1,11 +1,4 @@
-﻿using Dungeon_Crawl.src.Core;
-using Dungeon_Crawl.src.Core.View;
-using Dungeon_Crawl.src.Objects.DynamicObjects;
-using Dungeon_Crawl.src.Objects.DynamicObjects.Player;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-
-namespace Dungeon_Crawl.src.Actions;
+﻿namespace Dungeon_Crawl.src.Actions;
 
 internal class Fight
 {
