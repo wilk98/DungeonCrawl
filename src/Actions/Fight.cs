@@ -181,6 +181,14 @@ internal class Fight
     {
         UpdateAreaFight(player, monster);
         if (monster is Archer)
+            AttackArcher(player, monster);
+        else if (monster is Warrior)
+            AttackWarrior(player, monster);
+    }
+
+    private static void AttackWarrior(Player player, Monster monster)
+    {
+        if (player.Position.Y - monster.Position.Y == 1)
         {
             int attackMonster = monster.Stats.Strength;
             int defencePlayer = player.Stats.Defense;
@@ -193,21 +201,19 @@ internal class Fight
                 player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
             }
         }
-        else if (monster is Warrior)
+    }
+
+    private static void AttackArcher(Player player, Monster monster)
+    {
+        int attackMonster = monster.Stats.Strength;
+        int defencePlayer = player.Stats.Defense;
+        if (attackMonster <= defencePlayer)
         {
-            if(player.Position.Y - monster.Position.Y == 1)
-            {
-                int attackMonster = monster.Stats.Strength;
-                int defencePlayer = player.Stats.Defense;
-                if (attackMonster <= defencePlayer)
-                {
-                    player.Stats.HealthPoints -= 1;
-                }
-                else
-                {
-                    player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
-                }
-            }
+            player.Stats.HealthPoints -= 1;
+        }
+        else
+        {
+            player.Stats.HealthPoints = player.Stats.HealthPoints - (attackMonster - defencePlayer);
         }
     }
 }
