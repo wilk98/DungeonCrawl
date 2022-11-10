@@ -8,5 +8,5 @@ public class Shield : Armor
     }
     public override string Name => base.Name + "Shield";
 
-    public override EquipmentType equipmentType => EquipmentType.Weapon;
+    public override EquipmentType equipmentType => EquipmentType.Gloves;
 }
