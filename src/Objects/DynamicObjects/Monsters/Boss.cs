@@ -6,20 +6,24 @@ internal class Boss : Monster
 {
     public Boss(Position position) : base(position)
     {
+        Stats = new Stats();
+        Stats.HealthPoints = 200;
+        Stats.Strength = 30;
+        Stats.Defense = 15;
     }
 
     protected override string Symbol => "B";
 
-    internal override int experienceToGain => 100;
+    internal override int experienceToGain => 150;
 
     public override string Render()
     {
-        throw new NotImplementedException();
+        return "";
     }
 
     public override void Update()
     {
-        throw new NotImplementedException();
+        return;
     }
 }
 
