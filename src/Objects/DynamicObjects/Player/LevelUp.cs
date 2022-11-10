@@ -30,6 +30,7 @@ public class LevelUp
         player.Stats.Strength += 2;
         player.Stats.HealthPoints = maxHealtPoints;
         experienceRequired += 100;
+        player.Info = new InfoDialog($"New level {level}!", "Ok", null);
     }
     public void Update(Player player)
     {
